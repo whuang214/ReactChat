@@ -27,6 +27,8 @@ Provide an outline of your project direction and the names of associated team me
 There are no other scheduled checkpoints for your project. 
 
 #### Turning in Your Project (Due Monday, April 29, 11:59 pm)
+**Although the assignment is due at 11:59 pm, you must be prepared to demo your website in class that day.**
+
 Submit a second PR on the final project repo to turn in your app and code. Again, only one pull request per team.
 
 Deploy your app, in the form of a webpage, to Glitch/Heroku/Digital Ocean or some other service; it is critical that the application functions correctly wherever you post it.
