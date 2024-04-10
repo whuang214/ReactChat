@@ -1,5 +1,7 @@
 # Final Project
 
+[Example Projects from A23](https://echo360.org/collection/50a4d343-caea-4deb-93ee-61bdd7da543f/public)
+
 For your final project, you'll implement a web application that exhibits understanding of the course materials. 
 This project should provide an opportunity to both be creative and to pursue individual research and learning goals.
 
@@ -9,7 +11,7 @@ Your project should consist of a complete Web application, exhibiting facets of 
 - Static web page content and design. You should have a project that is accessible, easily navigable, and features significant content.
 - Dynamic behavior implemented with JavaScript (TypeScript is also allowed if your group wants to explore it).
 - Server-side programming *using Node.js*. Typically this will take the form of some sort of persistent data (database), authentication, and possibly server-side computation. 
-- A video (less than five minutes) where each group member explains some aspect of the project. An easy way to produce this video is for you all the groups members to join a Zoom call that is recorded; each member can share their screen when they discuss the project or one member can "drive" the interface while other members narrate (this second option will probably work better.) Upload the video to Canvas. (Further instructions are available in the Canvas assignment.) Make sure your video is less than five minutes, but long enough to successfully  explain your project and show it in action. There is no minimum video length.
+- A video (less than five minutes) where each group member explains some aspect of the project. An easy way to produce this video is for you all the groups members to join a Zoom call that is recorded; each member can share their screen when they discuss the project or one member can "drive" the interface while other members narrate (this second option will probably work better.) Upload the video to Canvas. (Further instructions are available in the Canvas assignment.) Make sure your video is less than five minutes but long enough to successfully explain your project and show it in action. There is no minimum video length.
 
 ## Project ideation
 Excellent projects typically serve someone/some group; for this assignment you need to define your users and stakeholders. I encourage you to identify projects that will have impact, either artistically, politically, or in terms of productivity. 
@@ -40,6 +42,7 @@ The README for your second pull request doesn’t need to be a formal report, bu
 3. An outline of the technologies you used and how you used them.
 4. What challenges you faced in completing the project.
 5. What each group member was responsible for designing / developing.
+6. What accessibility features you included in your project.
 
 Think of 1, 3, and 4 in particular in a similar vein to the design / technical achievements for A1—A4. Make a case for why what you did was challenging and why your implementation deserves a grade of 100%.
 
