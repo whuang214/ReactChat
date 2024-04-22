@@ -1,0 +1,36 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  background-color: #A9B0B7;
+}
+
+.side-bar{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #AC2B37;
+  gap: 5%;
+
+} 
+
+
+.side-bar-item{
+  text-decoration: none; 
+  font-size: 24px;
+  color: black;
+  margin: 10px;
+  border-radius: 20px;
+  width: 100%;
+  padding: 20px 0px 20px 0px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.side-bar-item:hover{
+  background-color: #ab3e49;
+  transition: 0.3s;
+}
+
+.selected-item{
+  font-weight: bolder;
+}
