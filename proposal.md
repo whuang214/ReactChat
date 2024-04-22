@@ -11,22 +11,15 @@ Cool Design: <https://www.figma.com/file/6YEXaTHGOsgR1TBAFnlLhM/Messaging-App-UI
 <https://dribbble.com/shots/23680173-Web-Messaging-App-UI>
 
 -   MongoDB
-
 -   Mongoose
-
 -   Passport.js
-
 -   Express-session
-
 -   GitHub Login
-
 -   Express.js
-
 -   Dotenv
-
 -   Three.js
-
 -   WebSocket/Express-websocket
+-   Tailwind CSS
 
 ## Features
 
