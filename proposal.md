@@ -1,6 +1,7 @@
 # AIO Social
 
 An All-In-One social media platform for direct messaging, global messaging, games, and global feed with a 30 character word limit.
+
 Will Huang, Ethan Moynihan, Ryan Nguyen, Brandon Lui, Lucca Chantre 
 
 GitHub Repo: <https://github.com/bmlui/cs4241-final-project> 
