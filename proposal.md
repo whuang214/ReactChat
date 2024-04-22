@@ -28,7 +28,7 @@ Cool Design: <https://www.figma.com/file/6YEXaTHGOsgR1TBAFnlLhM/Messaging-App-UI
 
 ## Features
 
--   Direct Messaging
+Direct Messaging
 
 -   Use websockets to live message people
 
@@ -36,7 +36,7 @@ Cool Design: <https://www.figma.com/file/6YEXaTHGOsgR1TBAFnlLhM/Messaging-App-UI
 
 -   Display messages live in Front End
 
--   Global Messaging
+Global Messaging
 
 -   Use websockets to live message multiple people
 
@@ -46,11 +46,11 @@ Cool Design: <https://www.figma.com/file/6YEXaTHGOsgR1TBAFnlLhM/Messaging-App-UI
 
 -   Don't store global chat, just new things coming in
 
--   "Collaborative Game"/Tinder
+  "Collaborative Game"/Tinder
 
 -   Collaborative dating match-making game
 
--   Global Feed
+  Global Feed
 
 -   Add media/text on global form
 
