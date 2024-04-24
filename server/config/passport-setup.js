@@ -10,6 +10,12 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, done) {
       // find or create user logic
+      console.log("Passport callback function fired");
+      const user = {
+        id: profile.id,
+        name: profile.name,
+        username: profile.username,
+      };
       done(null, profile);
     }
   )
@@ -18,11 +24,11 @@ passport.use(
 // when we need to store the user in the session
 passport.serializeUser((user, done) => {
   // TODO: store user in the session
-  done(null, user.id);
+  done(null, user);
 });
 
 // when we need to fetch the user from the database
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((user, done) => {
   // TODO: fetch user from the database
   done(null, user);
 });

@@ -1,14 +1,11 @@
-const express = require("express");
-const passport = require("passport");
-const router = express.Router();
+// authRoutes.js
 
-router.get("/github", passport.authenticate("github"));
-router.get(
-  "/github/callback",
-  passport.authenticate("github", { failureRedirect: "/login" }),
-  function (req, res) {
-    res.redirect("/");
-  }
-);
+const express = require("express");
+const router = express.Router();
+const authController = require("../controllers/authController"); // Adjust the path as necessary
+
+router.get("/github", authController.githubAuth);
+router.get("/github/callback", authController.githubCallback);
+router.get("/logout", authController.logout);
 
 module.exports = router;
