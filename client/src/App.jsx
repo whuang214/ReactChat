@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Welcome to the front end</h1>
+      <h1 className="text-3xl font-bold underline">Welcome to the front end</h1>
       <button onClick={handleClick}>Fetch Data</button>
     </div>
   );
