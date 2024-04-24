@@ -16,9 +16,13 @@ passport.use(
 );
 
 // when we need to store the user in the session
-passport.serializeUser((user, done) => done(null, user.id));
+passport.serializeUser((user, done) => {
+  // TODO: store user in the session
+  done(null, user.id);
+});
 
 // when we need to fetch the user from the database
 passport.deserializeUser((id, done) => {
+  // TODO: fetch user from the database
   done(null, user);
 });
