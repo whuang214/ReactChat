@@ -14,7 +14,7 @@ function useAuth() {
       .get(`${API_URL}/user`, { withCredentials: true }) // Ensure credentials are included for cookie-based authentication
       .then((res) => {
         setUser(res.data.user);
-        console.log("Authenticated user:", res.data.user);
+        // console.log("Authenticated user:", res.data.user);
         setLoading(false);
       })
       .catch((err) => {

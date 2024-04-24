@@ -8,6 +8,20 @@ const API_URL = import.meta.env.VITE_API_URL;
 const App = () => {
   const { user, loading } = useAuth(); // Destructure user and loading states from useAuth hook
 
+  const handleGetConversations = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/chat/conversations`, {
+        withCredentials: true,
+      });
+      console.log(response.data);
+    } catch (error) {
+      alert(
+        "An error occurred. Please check the console for more information."
+      );
+      console.error(error);
+    }
+  };
+
   if (loading) {
     return (
       // Render a loading indicator while waiting for authentication process to complete
@@ -33,6 +47,13 @@ const App = () => {
           >
             Logout
           </a>
+          {/* this button calls all conversations and prints to console */}
+          <button
+            onClick={handleGetConversations}
+            className="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
+          >
+            Get Conversations
+          </button>
         </div>
       ) : (
         <a
