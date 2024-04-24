@@ -32,11 +32,9 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(corsMiddleware);
 
-app.use("/auth", require("./routes/authRoutes"));
-app.use("/user", require("./routes/userRoutes"));
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the home route" });
-});
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/user", require("./routes/userRoutes"));
+app.use("/api/chat", require("./routes/chatRoutes"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

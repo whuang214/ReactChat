@@ -1,5 +1,7 @@
 const passport = require("passport");
 const GitHubStrategy = require("passport-github").Strategy;
+const User = require("../models/userModel");
+const mongoose = require("mongoose");
 
 passport.use(
   new GitHubStrategy(
@@ -8,27 +10,40 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
-    function (accessToken, refreshToken, profile, done) {
-      // find or create user logic
-      console.log("Passport callback function fired");
-      const user = {
-        id: profile.id,
-        name: profile.name,
-        username: profile.username,
-      };
-      done(null, profile);
+    async (accessToken, refreshToken, profile, done) => {
+      // console.log("profile: ", profile);
+      try {
+        let user = await User.findOne({ githubId: profile.id });
+        if (!user) {
+          user = await User.create({
+            githubId: profile.id,
+            username: profile.username,
+            displayName: profile.displayName,
+            profileUrl: profile.profileUrl,
+            avatarUrl: profile.photos[0].value,
+          });
+        }
+        done(null, user);
+      } catch (error) {
+        done(error);
+      }
     }
   )
 );
 
-// when we need to store the user in the session
+// saves the user id to the session
 passport.serializeUser((user, done) => {
-  // TODO: store user in the session
-  done(null, user);
+  console.log("serializeUser: ", user);
+  done(null, user._id);
 });
 
-// when we need to fetch the user from the database
-passport.deserializeUser((user, done) => {
-  // TODO: fetch user from the database
-  done(null, user);
+// retrieves the user id from the session
+passport.deserializeUser((id, done) => {
+  User.findById(id)
+    .then((user) => {
+      done(null, user);
+    })
+    .catch((err) => {
+      done(err);
+    });
 });
