@@ -1,12 +1,12 @@
 const cors = require("cors");
 
-const allowedOrigins = [process.env.PROD_ORIGIN];
+const allowedOrigins = [process.env.PROD_FRONTEND_ORIGIN];
 
 const corsOptions = {
   origin: function (origin, callback) {
     if (process.env.NODE_ENV === "development") {
       // In development, accept all origins for easier testing
-      allowedOrigins.push(process.env.DEV_ORIGIN);
+      allowedOrigins.push(process.env.DEV_FRONTEND_ORIGIN);
     }
 
     if (!origin || allowedOrigins.includes(origin)) {

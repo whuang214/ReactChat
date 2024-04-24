@@ -24,7 +24,10 @@ const githubCallback = (req, res) => {
         if (err) {
           return res.status(401).json({ error: "Login failed" });
         }
-        res.redirect(process.env.DEV_ORIGIN); // Redirect to front-end
+        if (process.env.NODE_ENV === "production") {
+          return res.redirect(process.env.PROD_FRONTEND_ORIGIN);
+        }
+        res.redirect(process.env.DEV_FRONTEND_ORIGIN);
       });
     }
   );
@@ -37,7 +40,10 @@ const logout = (req, res) => {
     if (err) {
       return next(err);
     }
-    res.redirect(process.env.DEV_ORIGIN);
+    if (process.env.NODE_ENV === "production") {
+      return res.redirect(process.env.PROD_FRONTEND_ORIGIN);
+    }
+    res.redirect(process.env.DEV_FRONTEND_ORIGIN);
   });
 };
 
