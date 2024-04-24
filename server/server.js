@@ -1,14 +1,14 @@
 const express = require("express");
 const morgan = require("morgan");
-
 const app = express();
+app.use(express.json()); // Parse JSON bodies for this app
 
-// Log HTTP requests to the console
+// Log HTTP requests to the console in development mode
 app.use(morgan("dev"));
 
 // Define a simple route
 app.get("/", (req, res) => {
-  res.send("Hello, World!");
+  res.json({ message: "Message from the backend" });
 });
 
 // Start the server
