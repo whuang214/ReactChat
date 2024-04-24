@@ -5,7 +5,7 @@ const session = require("express-session");
 const passport = require("passport");
 const corsMiddleware = require("./config/corsConfig");
 
-dotenv.config();
+dotenv.config(); // allow for .env
 const app = express();
 
 app.use(express.json());
@@ -16,7 +16,10 @@ app.use(
     resave: true,
     saveUninitialized: true,
   })
-);
+); // allow for sessions
+
+// database setup
+require("./config/database");
 
 // passport setup
 require("./config/passport-setup");
