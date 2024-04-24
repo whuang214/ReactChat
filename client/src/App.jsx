@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import "./App.css";
+
 import useAuth from "./hooks/useAuth";
+import Login from "./components/Login";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -32,12 +34,12 @@ const App = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="mb-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900">
-        Welcome to the Front-End
-      </h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       {user ? (
         <div className="flex flex-col items-center">
+          <h1 className="mb-4 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900">
+            Welcome to the Front-End
+          </h1>
           <p className="text-xl text-green-500 my-3">
             Welcome, {user.username}!
           </p>
@@ -47,7 +49,6 @@ const App = () => {
           >
             Logout
           </a>
-          {/* this button calls all conversations and prints to console */}
           <button
             onClick={handleGetConversations}
             className="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
@@ -56,12 +57,7 @@ const App = () => {
           </button>
         </div>
       ) : (
-        <a
-          href={`${API_URL}/auth/github`}
-          className="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
-        >
-          Login with GitHub
-        </a>
+        <Login />
       )}
     </div>
   );
