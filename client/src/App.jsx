@@ -6,7 +6,8 @@ const App = () => {
   const handleClick = async () => {
     try {
       // Make API call to backend
-      const response = await axios.get("http://localhost:3000/");
+      const response = await axios.get(import.meta.env.VITE_API_URL);
+      console.log("Response:", response.data);
       // Display message from JSON response in an alert
       alert(response.data.message);
     } catch (error) {
