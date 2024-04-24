@@ -35,15 +35,15 @@ const githubCallback = (req, res) => {
 };
 
 // Function to handle logout
+// Function to handle logout
 const logout = (req, res) => {
   req.logout(function (err) {
     if (err) {
-      return next(err);
+      return res.status(500).json({ error: "Logout failed" });
     }
-    if (process.env.NODE_ENV === "production") {
-      return res.redirect(process.env.PROD_FRONTEND_ORIGIN);
-    }
-    res.redirect(process.env.DEV_FRONTEND_ORIGIN);
+
+    // Respond with a success message
+    return res.status(200).json({ message: "Logout successful" });
   });
 };
 
