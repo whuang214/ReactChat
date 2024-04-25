@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

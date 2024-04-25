@@ -7,6 +7,7 @@ const conversationSchema = new Schema(
       { type: Schema.Types.ObjectId, ref: "User", required: true },
     ], // Array of User IDs participating in the conversation
     messages: [{ type: Schema.Types.ObjectId, ref: "Message" }], // Array of message IDs associated with the conversation
+    conversationType: { type: String, default: "private" }, // Type of conversation (private or group)
   },
   { timestamps: true }
 );

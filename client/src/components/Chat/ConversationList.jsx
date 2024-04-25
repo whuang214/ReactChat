@@ -32,24 +32,26 @@ export const ConversationList = ({
         {contacts.map((contact) => (
           <li
             key={contact._id}
-            class="flex items-center p-3 hover:bg-gray-100 cursor-pointer"
+            className="flex items-center p-3 hover:bg-gray-100 cursor-pointer"
           >
             <img
-              class="w-12 h-12 rounded-full object-cover"
+              className="w-12 h-12 rounded-full object-cover"
               src={contact.avatarUrl || "path/to/default-avatar.png"} // Replace with your default avatar path
               alt={`Avatar of ${contact.displayName}`}
             />
-            <div class="ml-4">
-              <p class="text-lg font-medium text-gray-900">
+            <div className="ml-4">
+              <p className="text-lg font-medium text-gray-900">
                 {contact.displayName}
               </p>
               {/* TODO: change this later*/}
-              <p class="text-sm text-gray-500">{contact.lastMessage}</p>
+              <p className="text-sm text-gray-500">{contact.lastMessage}</p>
             </div>
           </li>
         ))}
       </ul>
-      {contacts.length === 0 && <p class="text-gray-500">No contacts found.</p>}
+      {contacts.length === 0 && (
+        <p className="text-gray-500">No contacts found.</p>
+      )}
     </div>
   );
 };

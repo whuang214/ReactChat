@@ -15,7 +15,10 @@ export const Chat = () => {
   // useeffect to set current conversation most recent (make a call to the server to get the most recent conversation)
   useEffect(() => {
     axios
-      .get(`${API_URL}/chat/conversations`, { withCredentials: true })
+      .get(`${API_URL}/chat/conversations`, {
+        withCredentials: true,
+        params: { conversationType: "private" },
+      })
       .then((res) => {
         setConversations(res.data);
         setCurrentConversation(res.data[0]);
@@ -34,11 +37,7 @@ export const Chat = () => {
           setCurrentConversation={setCurrentConversation}
         />
       </div>
-      <ChatWindow
-        user={user}
-        currentConversation={currentConversation}
-        setCurrentConversation={setCurrentConversation}
-      />
+      <ChatWindow user={user} currentConversation={currentConversation} />
     </div>
   );
 };

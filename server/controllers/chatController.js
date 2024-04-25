@@ -1,12 +1,19 @@
 const Conversation = require("../models/conversationModel");
 const Message = require("../models/messageModel");
 
-// get all conversations that have req.user._id as a participant
+// get all conversations that have req.user._id in the participants array
 // sort by most recent conversation at index 0
 async function getConversations(req, res) {
+  // check req object for searching for private vs group conversations
+  if (!req.query.conversationType) {
+    return res
+      .status(400)
+      .json({ error: "conversationType query parameter is required" });
+  }
   try {
     const conversations = await Conversation.find({
       participants: req.user._id,
+      conversationType: req.query.conversationType,
     })
       .sort({ updatedAt: -1 })
       .populate("participants");
@@ -14,6 +21,7 @@ async function getConversations(req, res) {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+  return;
 }
 
 async function getConversation(req, res) {
