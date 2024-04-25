@@ -1,41 +1,55 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const rateLimit = require("express-rate-limit");
 const session = require("express-session");
 const passport = require("passport");
 const corsMiddleware = require("./config/corsConfig");
 
-dotenv.config(); // allow for .env
+dotenv.config(); // Load environment variables from .env file
 const app = express();
 
+// Middleware setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Session setup
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
-); // allow for sessions
+);
 
-// database setup
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again after an hour",
+});
+
+// Apply rate limiting middleware to all routes
+app.use(limiter);
+
+// Database setup
 require("./config/database");
 
-// passport setup
+// Passport setup
 require("./config/passport-setup");
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Middleware for development environment
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+// CORS middleware
 app.use(corsMiddleware);
 
 // Middleware to check if the user is authenticated using Passport
 function isAuthenticated(req, res, next) {
-  // console.log("Session:", req.session); // Debug session data
-  // console.log("User:", req.user); // Check if user data is present
   if (req.isAuthenticated()) {
     return next();
   } else {
@@ -43,10 +57,12 @@ function isAuthenticated(req, res, next) {
   }
 }
 
+// Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/user", isAuthenticated, require("./routes/userRoutes"));
 app.use("/api/chat", isAuthenticated, require("./routes/chatRoutes"));
 
+// Server setup
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

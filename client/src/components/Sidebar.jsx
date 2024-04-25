@@ -17,8 +17,20 @@ const SidebarItem = ({ icon: Icon, label, onClick, selected }) => (
     onClick={onClick}
     className={`sidebar-item ${
       selected ? "sidebar-item-selected" : "sidebar-item-unselected"
-    }`}
+    } flex items-center justify-between`}
   >
+    <div className="flex items-center p-8">
+      <Icon className="h-10 w-10 ml-2 mr-3" />
+      <span
+        className={`sidebar-item-label ${
+          selected
+            ? "sidebar-item-label-selected"
+            : "sidebar-item-label-unselected"
+        }`}
+      >
+        {label}
+      </span>
+    </div>
     <div
       className={`sidebar-item-indicator ${
         selected
@@ -26,16 +38,7 @@ const SidebarItem = ({ icon: Icon, label, onClick, selected }) => (
           : "sidebar-item-indicator-unselected"
       }`}
     ></div>
-    <Icon className="h-10 w-10 ml-2 mr-3" />
-    <span
-      className={`sidebar-item-label ${
-        selected
-          ? "sidebar-item-label-selected"
-          : "sidebar-item-label-unselected"
-      }`}
-    >
-      {label}
-    </span>
+    {/* Indicator */}
   </button>
 );
 
