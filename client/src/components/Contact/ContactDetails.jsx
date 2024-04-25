@@ -1,3 +1,5 @@
+import "./ContactDetails.css";
+
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -18,13 +20,11 @@ export const ContactDetails = ({ user }) => {
   };
 
   return (
-    <div className="flex flex-col flex-grow p-4 rounded-2xl bg-white shadow-lg">
-      <h1 className="text-3xl font-bold mb-4 text-purple-600">
-        Contact Details
-      </h1>
+    <div className="panel p-10 w-1/2">
+      <h1 className="panel-header">Contact Details</h1>
       {user && (
         <>
-          <div className="flex flex-col items-center mb-6">
+          <div className="profile-header mb-6">
             <img
               className="w-32 h-32 rounded-full border-4 border-purple-300 mb-4"
               src={user.avatarUrl}

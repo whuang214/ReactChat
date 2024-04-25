@@ -1,0 +1,44 @@
+/* sidebar.css */
+@tailwind base;
+@tailwind components;
+@layer components {
+  /* Sidebar */
+  .sidebar {
+    @apply w-1/12 bg-purple-600 flex flex-col items-center rounded-3xl shadow-2xl m-7;
+  }
+  .profile-img {
+    @apply w-14 h-14 md:w-16 md:h-16 lg:w-24 lg:h-24 my-8 rounded-full border-2 border-white cursor-pointer;
+  }
+  .sidebar-content {
+    @apply flex flex-col justify-between flex-grow space-y-7 m-10;
+  }
+  /* Sidebar item */
+  .sidebar-item {
+    @apply w-full flex items-center justify-start p-2 my-2 relative rounded-lg transition duration-300 ease-in-out;
+  }
+  .sidebar-item-selected {
+    @apply bg-dark-purple text-white;
+  }
+  .sidebar-item-unselected {
+    @apply text-white;
+  }
+  .sidebar-item-indicator {
+    @apply absolute left-0 top-0 w-1 h-full transition-all duration-300 ease-in-out rounded-lg;
+  }
+  .sidebar-item-indicator-selected {
+    @apply bg-yellow-400;
+  }
+  .sidebar-item-indicator-unselected {
+    @apply bg-transparent;
+  }
+  .sidebar-item-label {
+    @apply flex-1 text-left transition duration-300 ease-in-out;
+  }
+  .sidebar-item-label-selected {
+    @apply font-bold;
+  }
+  .sidebar-item-label-unselected {
+    @apply font-medium;
+  }
+}
+@tailwind utilities;

@@ -23,7 +23,7 @@ export const ConversationList = () => {
   }, [user]); // Re-fetch contacts when user changes
 
   return (
-    <div className="bg-white p-4 mt-4 rounded-lg shadow-lg flex flex-col">
+    <div className="panel">
       <h1 className="text-lg font-bold mb-4">Conversations</h1>
       {contacts.length > 0 ? (
         <ul className="flex flex-col divide-y divide-gray-300 overflow-y-auto">

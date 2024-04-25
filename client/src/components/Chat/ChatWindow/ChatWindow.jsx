@@ -8,7 +8,7 @@ export const ChatWindow = ({
   setCurrentConversation,
 }) => {
   return (
-    <div className="flex flex-col flex-grow bg-white rounded-3xl shadow-lg">
+    <div className="panel">
       <ChatHeader user={user} currentConversation={currentConversation} />
       <ChatBody currentConversation={currentConversation} />
       <ChatFooter currentConversation={currentConversation} />

@@ -48,9 +48,9 @@ export const AddContact = () => {
   };
 
   return (
-    <div className="flex flex-grow m-7 ml-0">
-      <div className="flex flex-col flex-grow p-4 rounded-2xl mr-7 bg-white shadow-lg">
-        <h1 className="text-3xl font-bold mb-4">Add Contact</h1>
+    <div className="flex m-7 ml-0">
+      <div className="panel mr-7 p-10 w-1/2">
+        <h1 className="panel-header mb-2">Add Contact</h1>
         <div className="mb-7 flex items-center justify-center">
           <input
             className="w-full p-2 rounded-lg border-2 border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-200 transition duration-200 ease-in-out"
@@ -115,9 +115,7 @@ export const AddContact = () => {
           )}
         </div>
       </div>
-      <div className="flex" style={{ minWidth: "40%" }}>
-        <ContactDetails user={selectedUser} />
-      </div>
+      <ContactDetails user={selectedUser} />
     </div>
   );
 };

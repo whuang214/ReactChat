@@ -1,5 +1,14 @@
 @tailwind base;
 @tailwind components;
+@layer components {
+  .panel {
+    @apply flex flex-col flex-grow bg-white rounded-lg shadow-md;
+  }
+
+  .panel-header {
+    @apply text-2xl font-bold;
+  }
+}
 @tailwind utilities;
 
 /* default styles */

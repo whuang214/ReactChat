@@ -24,7 +24,7 @@ export const Chat = () => {
 
   return (
     <div className="flex flex-grow m-7 ml-0">
-      <div className="flex flex-col flex-grow rounded-lg mr-7">
+      <div className="flex-grow mr-7">
         <GroupList
           currentConversation={currentConversation}
           setCurrentConversation={setCurrentConversation}
@@ -34,13 +34,11 @@ export const Chat = () => {
           setCurrentConversation={setCurrentConversation}
         />
       </div>
-      <div className="flex flex-col flex-grow rounded-lg">
-        <ChatWindow
-          user={user}
-          currentConversation={currentConversation}
-          setCurrentConversation={setCurrentConversation}
-        />
-      </div>
+      <ChatWindow
+        user={user}
+        currentConversation={currentConversation}
+        setCurrentConversation={setCurrentConversation}
+      />
     </div>
   );
 };
