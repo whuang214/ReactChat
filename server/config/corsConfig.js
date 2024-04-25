@@ -17,6 +17,7 @@ const corsOptions = {
   },
   credentials: true, // If your app needs to handle credentials
   optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  methods: ["GET", "POST", "PUT", "DELETE"],
 };
 
 module.exports = cors(corsOptions);

@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Mongoose = require("mongoose");
 
 const getUser = (req, res) => {
   if (!req.user) {
@@ -11,31 +12,50 @@ const getUser = (req, res) => {
 };
 
 const addUser = async (req, res) => {
-  console.log("Add user request:", req.params.id);
-  const { id } = req.params.id;
+  if (!req.params.id) {
+    return res.status(400).json({ error: "User ID is required." });
+  }
   if (!req.user) {
+    console.log("User not logged in.");
     return res
       .status(401)
       .json({ error: "You must be logged in to add a user." });
   }
   try {
-    // Find the user by ID using Mongoose
-    const user = await User.findById(id);
-    console.log("User found:", user);
-    if (!user) {
+    const currentUser = await User.findById(req.user._id);
+    const userToAdd = await User.findById(req.params.id);
+
+    if (!userToAdd) {
       return res.status(404).json({ error: "User not found." });
     }
-    // Add the user to the logged-in user's contacts in database
-    user.contacts.push(req.user._id);
+    if (currentUser.contacts.includes(userToAdd._id)) {
+      return res.status(400).json({ error: "User is already a contact." });
+    }
+    currentUser.contacts.push(userToAdd._id);
+    await currentUser.save();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred while adding the user." });
   }
 };
 
+const getContacts = async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ error: "You must be logged in." });
+  }
+  try {
+    const user = await User.findById(req.user._id).populate("contacts");
+    res.json({ contacts: user.contacts });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving contacts." });
+  }
+};
+
 const searchUser = async (req, res) => {
   const { term } = req.query;
-  console.log("Search term:", term.length);
   if (!term || term.length < 1) {
     // code goes here but doesnt front end doesnt see error json
     return res.status(400).json({ error: "Search term is required." });
@@ -79,6 +99,7 @@ const getUserByID = async (req, res) => {
 module.exports = {
   getUser,
   searchUser,
+  getContacts,
   getUserByID,
   addUser,
 };

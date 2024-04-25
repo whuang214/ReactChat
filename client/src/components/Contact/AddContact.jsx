@@ -18,39 +18,32 @@ export const AddContact = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/user/search?term=${searchTerm}`
+        `${API_URL}/user/search?term=${searchTerm}`,
+        {
+          withCredentials: true,
+        }
       );
       setSearchResults(response.data.results);
       setError(null);
     } catch (error) {
-      if (error.response.status === 400) {
-        setError(error.response.data.error);
-        setSearchResults([]);
-      } else {
-        console.error("Error searching for users:", error);
-        setError("An error occurred while searching for users.");
-        setSearchResults([]);
-      }
+      console.error("Error searching for users:", error.response.data);
+      setError(error.response.data.error);
+      setSearchResults([]);
     }
   };
 
   const handleContactClick = async (id) => {
     // make a request to the server by id to get the contact details
-    console.log("Getting user details for:", id);
     try {
-      const response = await axios.get(`${API_URL}/user/search/${id}`);
-      console.log("Contact details:", response.data.user);
+      const response = await axios.get(`${API_URL}/user/search/${id}`, {
+        withCredentials: true,
+      });
       setSelectedUser(response.data.user);
       setError(null);
     } catch (error) {
-      if (error.response.status === 404) {
-        setError(error.response.data.error);
-        setSelectedUser(null);
-      } else {
-        console.error("Error getting contact details:", error);
-        setError("An error occurred while getting contact details.");
-        setSelectedUser(null);
-      }
+      console.error("Error getting contact details:", error.response.data);
+      setError(error.response.data.error);
+      setSelectedUser(null);
     }
   };
 
@@ -88,33 +81,43 @@ export const AddContact = () => {
               <span className="block sm:inline ml-2">{error}</span>
             </div>
           )}
-          <div>
-            {searchResults.map((user) => (
-              <div key={user._id} className="mb-4">
-                <button
-                  className="flex justify-between w-full items-center focus:outline-none bg-gray-200 hover:bg-gray-300 rounded-2xl p-2"
-                  onClick={() => handleContactClick(user._id)}
-                >
-                  <div className="flex items-center">
-                    <img
-                      className="w-16 h-16 rounded-full mx-4"
-                      src={user.avatarUrl}
-                      alt={`Avatar of ${user.displayName}`}
-                    />
-                    <div className="flex flex-col justify-center">
-                      <div className="font-bold text-gray-800">
-                        {user.displayName}
+          {searchResults.length > 0 ? (
+            <div>
+              {searchResults.map((user) => (
+                <div key={user._id} className="mb-4">
+                  <button
+                    className="flex justify-between w-full items-center focus:outline-none bg-gray-200 hover:bg-gray-300 rounded-2xl p-2"
+                    onClick={() => handleContactClick(user._id)}
+                  >
+                    <div className="flex items-center">
+                      <img
+                        className="w-16 h-16 rounded-full mx-4"
+                        src={user.avatarUrl}
+                        alt={`Avatar of ${user.displayName}`}
+                      />
+                      <div className="flex flex-col justify-center">
+                        <div className="font-bold text-gray-800">
+                          {user.displayName}
+                        </div>
+                        <div className="text-gray-600">@{user.username}</div>
                       </div>
-                      <div className="text-gray-600">@{user.username}</div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            !error && (
+              <div className="text-gray-500 text-center mt-4">
+                No search results found.
               </div>
-            ))}
-          </div>
+            )
+          )}
         </div>
       </div>
-      <ContactDetails user={selectedUser} />
+      <div className="flex" style={{ minWidth: "40%" }}>
+        <ContactDetails user={selectedUser} />
+      </div>
     </div>
   );
 };

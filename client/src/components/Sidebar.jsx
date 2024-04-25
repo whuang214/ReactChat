@@ -10,23 +10,27 @@ import {
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
 
-const SidebarItem = ({ icon: Icon, onClick, selected }) => (
-  <div className="h-14 w-14 md:h-16 md:w-16 lg:h-20 lg:w-20">
-    <button
-      className={`flex w-full h-full items-center justify-center rounded-3xl text-white transition duration-500 ease-in-out transform ${
-        selected
-          ? "bg-white text-purple-600 shadow-2xl"
-          : "hover:-translate-y-1 hover:scale-110"
-      }`}
-      onClick={onClick}
+const SidebarItem = ({ icon: Icon, label, onClick, selected }) => (
+  <button
+    onClick={onClick}
+    className={`group w-full flex items-center justify-start p-2 my-2 ${
+      selected ? "bg-dark-purple text-white" : "bg-purple text-white"
+    } relative rounded-lg transition duration-300 ease-in-out`}
+  >
+    <div
+      className={`absolute left-0 top-0 w-1 h-full ${
+        selected ? "bg-yellow-400" : "bg-transparent"
+      } transition-all duration-300 ease-in-out rounded-lg`}
+    ></div>
+    <Icon className="h-10 w-10 ml-2 mr-3" />
+    <span
+      className={`flex-1 text-left ${
+        selected ? "font-bold" : "font-medium"
+      } transition duration-300 ease-in-out`}
     >
-      <Icon
-        className={`transition duration-500 ease-in-out w-full h-full m-0 ${
-          selected ? "text-purple-600" : "text-white"
-        }`}
-      />
-    </button>
-  </div>
+      {label}
+    </span>
+  </button>
 );
 
 // Logout user
@@ -36,7 +40,7 @@ const handleLogout = () => {
       withCredentials: true,
     })
     .then(() => {
-      window.location.href = window.location.href;
+      window.location.href = window.location.href; // reload the page
     })
     .catch((error) => {
       console.error(error);
@@ -47,7 +51,7 @@ export const Sidebar = ({ currentPage, setPage }) => {
   const { user } = useAuth();
 
   return (
-    <aside className="w-1/10 bg-purple-600 flex flex-col items-center rounded-3xl shadow-2xl m-7">
+    <aside className="w-1/12 bg-purple-600 flex flex-col items-center rounded-3xl shadow-2xl m-7">
       <img
         className="w-14 h-14 md:w-16 md:h-16 lg:w-24 lg:h-24 my-8 rounded-full border-2 border-white cursor-pointer"
         src={`${user?.avatarUrl}`}
