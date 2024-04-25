@@ -3,7 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const ContactList = () => {
+export const ConversationList = () => {
   const { user } = useAuth();
   const [contacts, setContacts] = useState([]);
 
@@ -24,7 +24,7 @@ export const ContactList = () => {
 
   return (
     <div className="bg-white p-4 mt-4 rounded-lg shadow-lg flex flex-col">
-      <h1 className="text-lg font-bold mb-4">Contacts</h1>
+      <h1 className="text-lg font-bold mb-4">Conversations</h1>
       {contacts.length > 0 ? (
         <ul className="flex flex-col divide-y divide-gray-300 overflow-y-auto">
           {contacts.map((contact) => (

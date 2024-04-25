@@ -2,11 +2,14 @@ const Conversation = require("../models/conversationModel");
 const Message = require("../models/messageModel");
 
 // get all conversations that have req.user._id as a participant
+// sort by most recent conversation at index 0
 async function getConversations(req, res) {
   try {
     const conversations = await Conversation.find({
       participants: req.user._id,
-    }).populate("participants");
+    })
+      .sort({ updatedAt: -1 })
+      .populate("participants");
     res.json(conversations);
   } catch (error) {
     res.status(500).json({ error: error.message });

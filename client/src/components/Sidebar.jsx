@@ -8,7 +8,7 @@ import {
   Cog6ToothIcon,
   ArrowLeftEndOnRectangleIcon,
   UserPlusIcon,
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/24/solid";
 
 const SidebarItem = ({ icon: Icon, label, onClick, selected }) => (
   <button
