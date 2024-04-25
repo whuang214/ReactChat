@@ -7,6 +7,7 @@ import { UserProfile } from "../components/UserProfile";
 import { Settings } from "../components/Settings";
 
 export const AuthenticatedApp = () => {
+  const [user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState("profile");
 
   return (

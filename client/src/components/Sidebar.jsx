@@ -3,7 +3,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 import "./Sidebar.css";
 
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../context/AuthContext";
 
 import {
   ChatBubbleLeftIcon,

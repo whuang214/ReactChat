@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ChatWindow } from "./ChatWindow/ChatWindow";
 import { ConversationList } from "./ConversationList";
 import { GroupList } from "./GroupList";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../context/AuthContext";
 
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -6,7 +7,7 @@ import "./App.css";
 
 import { Login } from "./pages/Login";
 import { AuthenticatedApp } from "./pages/AuthenticatedApp";
-import { useAuth } from "./hooks/useAuth";
+import { useAuth } from "./context/AuthContext";
 
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100">
       <ToastContainer position="top-center" />
-      {user ? <AuthenticatedApp user={user} /> : <Login />}
+      {user ? <AuthenticatedApp /> : <Login />}
     </div>
   );
 };
