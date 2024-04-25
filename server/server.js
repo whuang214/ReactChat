@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const rateLimit = require("express-rate-limit");
 const session = require("express-session");
 const passport = require("passport");
 const corsMiddleware = require("./config/corsConfig");
@@ -21,16 +20,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again after an hour",
-});
-
-// Apply rate limiting middleware to all routes
-app.use(limiter);
 
 // Database setup
 require("./config/database");
