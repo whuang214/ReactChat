@@ -2,7 +2,7 @@
 @tailwind components;
 @layer components {
   .panel {
-    @apply flex flex-col flex-grow bg-white rounded-lg shadow-md;
+    @apply flex flex-col flex-grow bg-white rounded-xl shadow-md;
   }
 
   .panel-header {
