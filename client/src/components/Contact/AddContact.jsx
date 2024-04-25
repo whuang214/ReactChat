@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { ContactDetails } from "./ContactDetails";
-import { PlusCircleIcon } from "@heroicons/react/20/solid";
+import { useAuth } from "../../hooks/useAuth";
 
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const AddContact = () => {
+  const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -48,7 +49,7 @@ export const AddContact = () => {
   };
 
   return (
-    <div className="flex m-7 ml-0">
+    <div className="flex m-7 ml-0 flex-grow">
       <div className="panel mr-7 p-10 w-1/2">
         <h1 className="panel-header mb-2">Add Contact</h1>
         <div className="mb-7 flex items-center justify-center">
@@ -86,7 +87,7 @@ export const AddContact = () => {
               {searchResults.map((user) => (
                 <div key={user._id} className="mb-4">
                   <button
-                    className="p-6 flex justify-between w-full items-center focus:outline-none bg-gray-200 hover:bg-gray-300 rounded-2xl p-2"
+                    className="flex justify-between w-full items-center focus:outline-none bg-gray-200 hover:bg-gray-300 rounded-2xl p-2"
                     onClick={() => handleContactClick(user._id)}
                   >
                     <div className="flex items-center">
@@ -115,7 +116,11 @@ export const AddContact = () => {
           )}
         </div>
       </div>
-      <ContactDetails user={selectedUser} />
+      {selectedUser ? (
+        <ContactDetails user={selectedUser} />
+      ) : (
+        <ContactDetails user={user} />
+      )}
     </div>
   );
 };

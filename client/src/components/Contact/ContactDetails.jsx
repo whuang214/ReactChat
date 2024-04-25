@@ -1,5 +1,7 @@
 import "./ContactDetails.css";
 
+import { toast } from "react-toastify";
+
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -13,9 +15,12 @@ export const ContactDetails = ({ user }) => {
           withCredentials: true,
         }
       );
+      // send a alert to the frontend that the contact was added
+      toast.success("Contact added successfully!");
       console.log("Contact added:", response.data);
     } catch (error) {
       console.error("Error adding contact:", error.response.data);
+      toast.error("Error adding contact: " + error.response.data.error);
     }
   };
 
