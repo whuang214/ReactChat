@@ -49,9 +49,9 @@ export const AddContact = () => {
 
   return (
     <div className="flex flex-grow m-7 ml-0">
-      <div className="flex flex-col flex-grow p-4 rounded-lg mr-7 bg-white shadow-lg">
+      <div className="flex flex-col flex-grow p-4 rounded-2xl mr-7 bg-white shadow-lg">
         <h1 className="text-3xl font-bold mb-4">Add Contact</h1>
-        <div className="mb-4 flex items-center justify-center">
+        <div className="mb-7 flex items-center justify-center">
           <input
             className="w-full p-2 rounded-lg border-2 border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-200 transition duration-200 ease-in-out"
             type="text"
@@ -86,7 +86,7 @@ export const AddContact = () => {
               {searchResults.map((user) => (
                 <div key={user._id} className="mb-4">
                   <button
-                    className="flex justify-between w-full items-center focus:outline-none bg-gray-200 hover:bg-gray-300 rounded-2xl p-2"
+                    className="p-6 flex justify-between w-full items-center focus:outline-none bg-gray-200 hover:bg-gray-300 rounded-2xl p-2"
                     onClick={() => handleContactClick(user._id)}
                   >
                     <div className="flex items-center">

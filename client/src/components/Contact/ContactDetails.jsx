@@ -18,7 +18,7 @@ export const ContactDetails = ({ user }) => {
   };
 
   return (
-    <div className="flex flex-col flex-grow p-4 rounded-lg bg-white shadow-lg">
+    <div className="flex flex-col flex-grow p-4 rounded-2xl bg-white shadow-lg">
       <h1 className="text-3xl font-bold mb-4 text-purple-600">
         Contact Details
       </h1>
