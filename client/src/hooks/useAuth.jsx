@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-function useAuth() {
+export const useAuth = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +24,4 @@ function useAuth() {
   }, []);
 
   return { user, loading };
-}
-
-export default useAuth;
+};

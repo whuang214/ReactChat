@@ -1,12 +1,13 @@
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
+import { useAuth } from "../../hooks/useAuth";
+
 import {
   ChatBubbleOvalLeftIcon,
   Cog6ToothIcon,
   ArrowLeftEndOnRectangleIcon,
 } from "@heroicons/react/24/outline";
-import useAuth from "../../hooks/useAuth";
 
 const SidebarItem = ({ icon: Icon, onClick }) => (
   <button
@@ -31,7 +32,7 @@ const handleLogout = () => {
     });
 };
 
-const Sidebar = ({ setPage }) => {
+export const Sidebar = ({ setPage }) => {
   const { user } = useAuth();
 
   return (
@@ -62,5 +63,3 @@ const Sidebar = ({ setPage }) => {
     </aside>
   );
 };
-
-export default Sidebar;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-import Login from "./pages/Login";
-import AuthenticatedApp from "./pages/AuthenticatedApp";
-import useAuth from "./hooks/useAuth";
+import { Login } from "./pages/Login";
+import { AuthenticatedApp } from "./pages/AuthenticatedApp";
+import { useAuth } from "./hooks/useAuth";
 
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;

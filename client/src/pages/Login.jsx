@@ -3,7 +3,7 @@ import GitHubLogo from "/github.png";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const Login = ({ onGitHubLogin }) => {
+export const Login = ({ onGitHubLogin }) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="mb-8 text-4xl font-bold text-purple-700">ReactChat</div>
@@ -23,5 +23,3 @@ const Login = ({ onGitHubLogin }) => {
     </div>
   );
 };
-
-export default Login;
