@@ -1,12 +1,13 @@
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 import {
   ChatBubbleOvalLeftIcon,
   Cog6ToothIcon,
   ArrowLeftEndOnRectangleIcon,
+  UserPlusIcon,
 } from "@heroicons/react/24/outline";
 
 const SidebarItem = ({ icon: Icon, onClick, selected }) => (
@@ -54,6 +55,12 @@ export const Sidebar = ({ currentPage, setPage }) => {
         onClick={() => setPage("profile")}
       />
       <div className="flex flex-col justify-between flex-grow space-y-7 m-10">
+        {/* Add Contact Page */}
+        <SidebarItem
+          icon={UserPlusIcon}
+          onClick={() => setPage("add-contact")}
+          selected={currentPage === "add-contact"}
+        />
         {/* Chat Page */}
         <SidebarItem
           icon={ChatBubbleOvalLeftIcon}

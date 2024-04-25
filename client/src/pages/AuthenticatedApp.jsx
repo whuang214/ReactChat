@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { Sidebar } from "../components/Sidebar/Sidebar";
+import { Sidebar } from "../components/Sidebar";
 import { Chat } from "../components/Chat/Chat";
+import { AddContact } from "../components/AddContact";
 import { UserProfile } from "../components/UserProfile";
 import { Settings } from "../components/Settings";
 
@@ -12,6 +13,7 @@ export const AuthenticatedApp = () => {
     <div className="flex w-full h-screen">
       <Sidebar currentPage={currentPage} setPage={setCurrentPage} />
       {currentPage === "chat" && <Chat />}
+      {currentPage === "add-contact" && <AddContact />}
       {currentPage === "profile" && <UserProfile />}
       {currentPage === "settings" && <Settings />}
     </div>
