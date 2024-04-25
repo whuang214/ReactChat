@@ -17,7 +17,6 @@ export const Chat = () => {
     axios
       .get(`${API_URL}/chat/conversations`, {
         withCredentials: true,
-        params: { conversationType: "private" },
       })
       .then((res) => {
         setConversations(res.data);
@@ -33,6 +32,7 @@ export const Chat = () => {
           setCurrentConversation={setCurrentConversation}
         />
         <ConversationList
+          conversations={conversations}
           currentConversation={currentConversation}
           setCurrentConversation={setCurrentConversation}
         />
