@@ -11,10 +11,10 @@ import {
 
 const SidebarItem = ({ icon: Icon, onClick }) => (
   <button
-    className="flex items-center justify-center h-12 w-12 mb-4 text-white transition duration-150 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+    className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 lg:h-18 lg:w-18 mb-4 text-white transition duration-150 ease-in-out transform hover:-translate-y-1 hover:scale-110"
     onClick={onClick}
   >
-    <Icon className="h-8 w-8" />
+    <Icon className="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14" />
   </button>
 );
 
@@ -36,14 +36,15 @@ export const Sidebar = ({ setPage }) => {
   const { user } = useAuth();
 
   return (
-    <aside className="h-auto bg-purple-600 flex flex-col items-center m-7 p-4 rounded-2xl shadow-2xl">
+    <aside className="w-1/10 h-auto bg-purple-600 flex flex-col items-center m-7 mr-0 p-4 rounded-2xl shadow-2xl">
       {/* User Profile */}
       <img
-        className="w-12 h-12 mb-8 rounded-full border-2 border-white cursor-pointer"
+        className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-8 rounded-full border-2 border-white cursor-pointer"
         src={`${user?.avatarUrl}`}
         alt="Profile"
         onClick={() => setPage("profile")}
       />
+
       {/* Chat Page */}
       <SidebarItem
         icon={ChatBubbleOvalLeftIcon}
