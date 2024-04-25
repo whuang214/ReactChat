@@ -1,10 +1,12 @@
-export const ContactDetails = ({ user }) => {
+const API_URL = import.meta.env.VITE_API_URL;
+
+export const ContactDetails = ({ user, onAddContact }) => {
   return (
     <div className="flex flex-col flex-grow p-4 rounded-lg bg-white shadow-lg">
       <h1 className="text-3xl font-bold mb-4 text-purple-600">
         Contact Details
       </h1>
-      {user && ( // This line checks if user object exists before rendering the details
+      {user && (
         <>
           <div className="flex flex-col items-center mb-6">
             <img
@@ -21,13 +23,19 @@ export const ContactDetails = ({ user }) => {
             >
               @{user.username}
             </a>
+            <a
+              href={`${API_URL}/user/add/${user._id}`}
+              className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Add Contact
+            </a>
           </div>
           <div className="flex flex-col p-4 bg-purple-100 rounded-lg">
             <div className="mb-2">
               <span className="font-bold text-purple-700">GitHub ID: </span>
               {user.githubId}
             </div>
-            <div>
+            <div className="mb-2">
               <span className="font-bold text-purple-700">Profile URL: </span>
               <a
                 href={user.profileUrl}
@@ -37,6 +45,10 @@ export const ContactDetails = ({ user }) => {
               >
                 {user.profileUrl}
               </a>
+            </div>
+            <div>
+              <span className="font-bold text-purple-700">Location: </span>
+              {user.location || "Not provided"}
             </div>
           </div>
         </>

@@ -108,15 +108,6 @@ export const AddContact = () => {
                       <div className="text-gray-600">@{user.username}</div>
                     </div>
                   </div>
-                  <div>
-                    <a
-                      className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl space-x-2"
-                      href="#"
-                    >
-                      <span>Add</span>
-                      <PlusCircleIcon className="h-5 w-5" />
-                    </a>
-                  </div>
                 </button>
               </div>
             ))}

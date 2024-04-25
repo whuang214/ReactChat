@@ -10,6 +10,29 @@ const getUser = (req, res) => {
   });
 };
 
+const addUser = async (req, res) => {
+  console.log("Add user request:", req.params.id);
+  const { id } = req.params.id;
+  if (!req.user) {
+    return res
+      .status(401)
+      .json({ error: "You must be logged in to add a user." });
+  }
+  try {
+    // Find the user by ID using Mongoose
+    const user = await User.findById(id);
+    console.log("User found:", user);
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+    // Add the user to the logged-in user's contacts in database
+    user.contacts.push(req.user._id);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while adding the user." });
+  }
+};
+
 const searchUser = async (req, res) => {
   const { term } = req.query;
   console.log("Search term:", term.length);
@@ -57,4 +80,5 @@ module.exports = {
   getUser,
   searchUser,
   getUserByID,
+  addUser,
 };

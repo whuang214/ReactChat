@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema({
   profileUrl: String, // url to the user's github profile
   avatarUrl: String, // url to the user's github avatar
   location: String, // the user's location
+  contacts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ], // an array of the user's contacts
 });
 
 const User = mongoose.model("User", userSchema);

@@ -15,12 +15,15 @@ passport.use(
       try {
         let user = await User.findOne({ githubId: profile.id });
         if (!user) {
+          // make a new user
           user = await User.create({
             githubId: profile.id,
             username: profile.username,
             displayName: profile.displayName,
             profileUrl: profile.profileUrl,
             avatarUrl: profile.photos[0].value,
+            location: profile._json.location,
+            contacts: [],
           });
         }
         done(null, user);
