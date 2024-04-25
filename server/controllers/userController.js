@@ -12,7 +12,9 @@ const getUser = (req, res) => {
 
 const searchUser = async (req, res) => {
   const { term } = req.query;
-  if (!term) {
+  console.log("Search term:", term.length);
+  if (!term || term.length < 1) {
+    // code goes here but doesnt front end doesnt see error json
     return res.status(400).json({ error: "Search term is required." });
   }
 

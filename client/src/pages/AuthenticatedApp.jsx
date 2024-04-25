@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Sidebar } from "../components/Sidebar";
 import { Chat } from "../components/Chat/Chat";
-import { AddContact } from "../components/AddContact";
+import { AddContact } from "../components/Contact/AddContact";
 import { UserProfile } from "../components/UserProfile";
 import { Settings } from "../components/Settings";
 
