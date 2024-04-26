@@ -10,7 +10,7 @@ export const ConversationList = ({
 }) => {
   const privateConversations = conversations.filter(
     (conversation) => conversation.conversationType === "private"
-  );
+  ); // todo: add conversation creation when added contact
   const { user } = useAuth();
 
   return (
