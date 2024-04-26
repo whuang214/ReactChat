@@ -1,7 +1,7 @@
 const Conversation = require("../models/conversationModel");
 const Message = require("../models/messageModel");
 
-// get all conversations that have req.user._id as a participant
+// get all conversations that have req.user._id in the participants array
 // sort by most recent conversation at index 0
 async function getConversations(req, res) {
   try {
@@ -14,6 +14,7 @@ async function getConversations(req, res) {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+  return;
 }
 
 async function getConversation(req, res) {

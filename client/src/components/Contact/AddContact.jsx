@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ContactDetails } from "./ContactDetails";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../context/AuthContext";
 
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
