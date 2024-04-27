@@ -18,7 +18,7 @@ const App = () => {
     return (
       // Render a loading indicator while waiting for authentication process to complete
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <ToastContainer position="top-center" />
+        <ToastContainer position="top-center" autoClose={2000} closeOnClick />
         <p className="text-xl font-semibold text-gray-800">Loading...</p>
       </div>
     );
@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100">
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" autoClose={2000} closeOnClick />
       {user ? <AuthenticatedApp /> : <Login />}
     </div>
   );

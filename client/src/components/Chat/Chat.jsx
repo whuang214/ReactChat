@@ -24,9 +24,8 @@ export const Chat = () => {
         if (!currentConversation) {
           setCurrentConversation(res.data[0]);
         }
-        console.log(currentConversation);
       });
-  }, [currentConversation]);
+  }, [currentConversation, conversations]);
 
   return (
     <div className="flex flex-grow m-7 ml-0">

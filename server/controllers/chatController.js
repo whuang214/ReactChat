@@ -40,6 +40,8 @@ async function createConversation(req, res) {
       // if participants is more than 1, then it is a group chat
       newConversation.type = "group";
     }
+    // Populate the participants array
+    await newConversation.populate("participants").execPopulate();
     res.status(201).json(newConversation);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
