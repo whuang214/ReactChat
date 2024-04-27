@@ -36,7 +36,6 @@ export const Chat = () => {
         withCredentials: true,
       })
       .then((res) => {
-        FI;
         // loop through the conversations and if the conversation is a group conversation, add it to the groupConversations state
         // if the conversation is a private conversation, add it to the privateConversations state
         // clear the groupConversations and privateConversations state before adding the conversations
