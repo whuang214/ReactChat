@@ -6,22 +6,15 @@ import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const ContactDetails = ({ user }) => {
-  const onAddContact = async () => {
-    try {
-      const response = await axios.post(
-        `${API_URL}/user/add/${user._id}`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
-      // send a alert to the frontend that the contact was added
-      toast.success("Contact added successfully!");
-      console.log("Contact added:", response.data);
-    } catch (error) {
-      console.error("Error adding contact:", error.response.data);
-      toast.error("Error adding contact: " + error.response.data.error);
-    }
+  const onAddContact = () => {
+    axios
+      .post(`${API_URL}/user/add/${user._id}`, {}, { withCredentials: true })
+      .then(() => {
+        toast.success(`Added ${user.username} as a contact!`);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.error);
+      });
   };
 
   return (

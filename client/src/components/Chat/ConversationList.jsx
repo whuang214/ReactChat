@@ -28,15 +28,13 @@ export const ConversationList = ({
     setShowModal(true); // Show the modal when the Add button is clicked
   };
 
+  // Function to create a new conversation
   const handleAddConversation = async (selectedContacts) => {
-    try {
-      // Extracting IDs from selectedContacts if it's structured with more data
-      const participantIds = selectedContacts.map((contact) => contact.value);
-      // add the current user's ID to the participantIds array
-      participantIds.push(user._id);
+    const participantIds = selectedContacts.map((contact) => contact.value);
+    participantIds.push(user._id);
 
-      // Making the POST request to the create conversation endpoint
-      const response = await axios.post(
+    axios
+      .post(
         `${API_URL}/chat/conversations`,
         {
           participants: participantIds,
@@ -44,34 +42,34 @@ export const ConversationList = ({
         {
           withCredentials: true, // If you are handling sessions/cookies, set this as needed
         }
-      );
-
-      console.log("New conversation created:", response.data);
-      // Update the current conversation to the newly created one
-      setCurrentConversation(response.data);
-      setConversations((prevConversations) => [
-        ...prevConversations,
-        response.data,
-      ]);
-    } catch (error) {
-      console.error(
-        "Failed to create conversation:",
-        error.response ? error.response.data : error.message
-      );
-      // Handle errors, e.g., update UI to show error message
-    }
+      )
+      .then((response) => {
+        setCurrentConversation(response.data);
+        setConversations((prevConversations) => [
+          ...prevConversations,
+          response.data,
+        ]);
+      })
+      .catch((error) => {
+        console.error(
+          "Failed to create conversation:",
+          error.response ? error.response.data : error.message
+        );
+      });
   };
 
   const fetchUserContacts = async () => {
     // fetch the api/users/contacts endpoint which will return the user's contacts
-    try {
-      const response = await axios.get(`${API_URL}/user/contacts`, {
+    axios
+      .get(`${API_URL}/user/contacts`, {
         withCredentials: true,
+      })
+      .then((response) => {
+        setUserContacts(response.data.contacts);
+      })
+      .catch((error) => {
+        console.error("Error fetching user contacts:", error.response.data);
       });
-      setUserContacts(response.data.contacts);
-    } catch (error) {
-      console.error("Error fetching user contacts:", error.response.data);
-    }
   };
 
   return (

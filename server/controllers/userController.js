@@ -33,6 +33,7 @@ const addUser = async (req, res) => {
     }
     currentUser.contacts.push(userToAdd._id);
     await currentUser.save();
+    res.json({ message: "User added successfully." });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred while adding the user." });

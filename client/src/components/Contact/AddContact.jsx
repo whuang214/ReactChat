@@ -16,36 +16,36 @@ export const AddContact = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(
-        `${API_URL}/user/search?term=${searchTerm}`,
-        {
-          withCredentials: true,
-        }
-      );
-      setSearchResults(response.data.results);
-      setError(null);
-    } catch (error) {
-      console.error("Error searching for users:", error.response.data);
-      setError(error.response.data.error);
-      setSearchResults([]);
-    }
+  const handleSearch = () => {
+    axios
+      .get(`${API_URL}/user/search?term=${searchTerm}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setSearchResults(response.data.results);
+        setError(null);
+      })
+      .catch((error) => {
+        console.error("Error searching for users:", error.response.data);
+        setError(error.response.data.error);
+        setSearchResults([]);
+      });
   };
 
-  const handleContactClick = async (id) => {
-    // make a request to the server by id to get the contact details
-    try {
-      const response = await axios.get(`${API_URL}/user/search/${id}`, {
+  const handleContactClick = (id) => {
+    axios
+      .get(`${API_URL}/user/search/${id}`, {
         withCredentials: true,
+      })
+      .then((response) => {
+        setSelectedUser(response.data.user);
+        setError(null);
+      })
+      .catch((error) => {
+        console.error("Error getting contact details:", error.response.data);
+        setError(error.response.data.error);
+        setSelectedUser(null);
       });
-      setSelectedUser(response.data.user);
-      setError(null);
-    } catch (error) {
-      console.error("Error getting contact details:", error.response.data);
-      setError(error.response.data.error);
-      setSelectedUser(null);
-    }
   };
 
   return (
