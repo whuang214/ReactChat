@@ -9,8 +9,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const Chat = () => {
   const { user } = useAuth();
-  const [conversations, setConversations] = useState([]);
-  const [currentConversation, setCurrentConversation] = useState(null);
+  const [conversations, setConversations] = useState([]); // conversations state
+  const [currentConversation, setCurrentConversation] = useState(null); // current conversation
 
   // useeffect to set current conversation most recent (make a call to the server to get the most recent conversation)
   useEffect(() => {
@@ -20,19 +20,25 @@ export const Chat = () => {
       })
       .then((res) => {
         setConversations(res.data);
-        setCurrentConversation(res.data[0]);
+        // if the first time, set the current conversation to the most recent conversation
+        if (!currentConversation) {
+          setCurrentConversation(res.data[0]);
+        }
       });
-  }, []);
+  }, [currentConversation]);
 
   return (
     <div className="flex flex-grow m-7 ml-0">
       <div className="flex-grow mr-7">
         <GroupList
           currentConversation={currentConversation}
+          setConversations={setConversations}
           setCurrentConversation={setCurrentConversation}
         />
         <ConversationList
+          user={user}
           conversations={conversations}
+          setConversations={setConversations}
           currentConversation={currentConversation}
           setCurrentConversation={setCurrentConversation}
         />

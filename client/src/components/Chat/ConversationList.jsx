@@ -1,21 +1,112 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { ConversationItem } from "../ConversationItem";
+import { Modal } from "./Modal";
+
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const ConversationList = ({
   conversations,
+  setConversations,
   currentConversation,
   setCurrentConversation,
 }) => {
+  const [showModal, setShowModal] = useState(false); // State to manage modal visibility
+  const [userContacts, setUserContacts] = useState([]);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    fetchUserContacts();
+  }, []);
+
   const privateConversations = conversations.filter(
     (conversation) => conversation.conversationType === "private"
-  ); // todo: add conversation creation when added contact
-  const { user } = useAuth();
+  );
+
+  const handleAddConversationClick = () => {
+    setShowModal(true); // Show the modal when the Add button is clicked
+  };
+
+  const handleAddConversation = async (selectedContacts) => {
+    try {
+      // Extracting IDs from selectedContacts if it's structured with more data
+      const participantIds = selectedContacts.map((contact) => contact.value);
+      // add the current user's ID to the participantIds array
+      participantIds.push(user._id);
+
+      // Making the POST request to the create conversation endpoint
+      const response = await axios.post(
+        `${API_URL}/chat/conversations`,
+        {
+          participants: participantIds,
+        },
+        {
+          withCredentials: true, // If you are handling sessions/cookies, set this as needed
+        }
+      );
+
+      console.log("New conversation created:", response.data);
+      // Update the current conversation to the newly created one
+      setCurrentConversation(response.data);
+      setConversations((prevConversations) => [
+        ...prevConversations,
+        response.data,
+      ]);
+    } catch (error) {
+      console.error(
+        "Failed to create conversation:",
+        error.response ? error.response.data : error.message
+      );
+      // Handle errors, e.g., update UI to show error message
+    }
+  };
+
+  const fetchUserContacts = async () => {
+    // fetch the api/users/contacts endpoint which will return the user's contacts
+    try {
+      const response = await axios.get(`${API_URL}/user/contacts`, {
+        withCredentials: true,
+      });
+      setUserContacts(response.data.contacts);
+    } catch (error) {
+      console.error("Error fetching user contacts:", error.response.data);
+    }
+  };
 
   return (
     <div className="panel">
-      <div className="panel-header p-2 pl-4">Conversations</div>
+      <div className="flex items-center justify-between p-3 m-4">
+        <h1 className="panel-header">Conversations</h1>
+        <button
+          className="btn-primary ml-2"
+          onClick={handleAddConversationClick}
+        >
+          Add
+        </button>
+      </div>
+      {privateConversations.map((conversation) => (
+        <ConversationItem
+          key={conversation._id}
+          conversation={conversation}
+          currentConversation={currentConversation}
+          setCurrentConversation={setCurrentConversation}
+        />
+      ))}
+
+      {showModal && (
+        <Modal
+          handleAddConversation={handleAddConversation}
+          setShowModal={setShowModal}
+          fetchUserContacts={fetchUserContacts}
+          userContacts={userContacts}
+        />
+      )}
+      {privateConversations.length === 0 && (
+        <p className="flex items-center justify-center h-full text-gray-500">
+          No conversations found
+        </p>
+      )}
     </div>
   );
 };

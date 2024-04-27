@@ -66,7 +66,7 @@ export const AddContact = () => {
             }}
           />
           <button
-            className="ml-2 bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition duration-200 ease-in-out"
+            className="ml-2 btn-primary rounded-xl"
             onClick={handleSearch}
           >
             Search

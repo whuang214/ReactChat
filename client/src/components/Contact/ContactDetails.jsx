@@ -44,10 +44,8 @@ export const ContactDetails = ({ user }) => {
             >
               @{user.username}
             </a>
-            <button
-              onClick={onAddContact}
-              className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
+            {/* add a (if contact already) then display other options (remove or something) */}
+            <button onClick={onAddContact} className="mt-4 btn-primary">
               Add Contact
             </button>
           </div>

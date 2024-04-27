@@ -33,9 +33,14 @@ async function getConversation(req, res) {
 }
 
 async function createConversation(req, res) {
+  console.log("request body", req.body);
   try {
     const { participants } = req.body;
     const newConversation = await Conversation.create({ participants });
+    if (participants.length > 1) {
+      // if participants is more than 1, then it is a group chat
+      newConversation.type = "group";
+    }
     res.status(201).json(newConversation);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
