@@ -11,8 +11,8 @@ export const ConversationList = ({
   privateConversations,
   setPrivateConversations,
   currentConversation,
-  setCurrentConversation,
   fetchConversations,
+  updateConversationById,
 }) => {
   const [showModal, setShowModal] = useState(false); // State to manage modal visibility
   const [userContacts, setUserContacts] = useState([]);
@@ -42,6 +42,7 @@ export const ConversationList = ({
       )
       .then((response) => {
         toast.success("Conversation created successfully");
+        updateConversationById(response.data._id);
         fetchConversations();
       })
       .catch((error) => {
@@ -104,8 +105,8 @@ export const ConversationList = ({
           key={conversation._id}
           conversation={conversation}
           currentConversation={currentConversation}
-          setCurrentConversation={setCurrentConversation}
           handleDeleteConversation={handleDeleteConversation}
+          updateConversationById={updateConversationById}
         />
       ))}
 

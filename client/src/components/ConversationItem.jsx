@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 export const ConversationItem = ({
   conversation,
   currentConversation,
-  setCurrentConversation,
+  updateConversationById,
   handleDeleteConversation,
 }) => {
   const { user } = useAuth(); // Assuming useAuth is your auth hook that provides user data
@@ -15,7 +15,7 @@ export const ConversationItem = ({
   const handleClick = () => {
     // if conversation is already selected, do nothing
     if (currentConversation?._id === conversation._id) return;
-    setCurrentConversation(conversation); // Function to set the current conversation
+    updateConversationById(conversation._id); // Function to set the current conversation
   };
 
   return (

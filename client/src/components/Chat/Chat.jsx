@@ -18,12 +18,25 @@ export const Chat = () => {
     fetchConversations();
   }, []);
 
+  // function to update the current conversation by id
+  const updateConversationById = (id) => {
+    axios
+      .get(`${API_URL}/chat/conversations/${id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setCurrentConversation(res.data);
+      });
+  };
+
+  // function to fetch the conversations
   const fetchConversations = () => {
     axios
       .get(`${API_URL}/chat/conversations`, {
         withCredentials: true,
       })
       .then((res) => {
+        FI;
         // loop through the conversations and if the conversation is a group conversation, add it to the groupConversations state
         // if the conversation is a private conversation, add it to the privateConversations state
         // clear the groupConversations and privateConversations state before adding the conversations
@@ -38,8 +51,7 @@ export const Chat = () => {
         });
         // if first time loading the page, set the current conversation to the most recent conversation
         if (!currentConversation) {
-          console.log("currnet convo is null");
-          setCurrentConversation(res.data[0]);
+          updateConversationById(res.data[0]._id);
         }
       });
   };
@@ -49,16 +61,17 @@ export const Chat = () => {
       <div className="flex-grow mr-7">
         <GroupList
           currentConversation={currentConversation}
+          updateConversationById={updateConversationById}
           groupConversations={groupConversations}
           setGroupConversations={setGroupConversations}
-          setCurrentConversation={setCurrentConversation}
+          fetchConversations={fetchConversations}
         />
         <ConversationList
           user={user}
           privateConversations={privateConversations}
+          updateConversationById={updateConversationById}
           setPrivateConversations={setPrivateConversations}
           currentConversation={currentConversation}
-          setCurrentConversation={setCurrentConversation}
           fetchConversations={fetchConversations}
         />
       </div>
