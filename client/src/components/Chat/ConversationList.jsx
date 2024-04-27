@@ -45,11 +45,8 @@ export const ConversationList = ({
         }
       )
       .then((response) => {
+        console.log("Conversation created successfully:", response.data);
         setCurrentConversation(response.data);
-        setConversations((prevConversations) => [
-          ...prevConversations,
-          response.data,
-        ]);
         toast.success("Conversation created successfully");
       })
       .catch((error) => {

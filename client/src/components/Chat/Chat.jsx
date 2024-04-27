@@ -24,6 +24,7 @@ export const Chat = () => {
         if (!currentConversation) {
           setCurrentConversation(res.data[0]);
         }
+        console.log(currentConversation);
       });
   }, [currentConversation]);
 
