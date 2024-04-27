@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { ConversationItem } from "../ConversationItem";
 import { Modal } from "./Modal";
+import { toast } from "react-toastify";
 
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
@@ -49,10 +50,33 @@ export const ConversationList = ({
           ...prevConversations,
           response.data,
         ]);
+        toast.success("Conversation created successfully");
       })
       .catch((error) => {
         console.error(
           "Failed to create conversation:",
+          error.response ? error.response.data : error.message
+        );
+      });
+  };
+
+  const handleDeleteConversation = (conversationId) => {
+    axios
+      .delete(`${API_URL}/chat/conversations/${conversationId}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        setConversations((prevConversations) =>
+          prevConversations.filter(
+            (conversation) => conversation._id !== conversationId
+          )
+        );
+        toast.success("Conversation deleted successfully");
+      })
+      .catch((error) => {
+        toast.error("Failed to delete conversation");
+        console.error(
+          "Failed to delete conversation:",
           error.response ? error.response.data : error.message
         );
       });
@@ -89,6 +113,7 @@ export const ConversationList = ({
           conversation={conversation}
           currentConversation={currentConversation}
           setCurrentConversation={setCurrentConversation}
+          handleDeleteConversation={handleDeleteConversation}
         />
       ))}
 

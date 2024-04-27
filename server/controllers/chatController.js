@@ -33,7 +33,6 @@ async function getConversation(req, res) {
 }
 
 async function createConversation(req, res) {
-  console.log("request body", req.body);
   try {
     const { participants } = req.body;
     const newConversation = await Conversation.create({ participants });
@@ -43,6 +42,22 @@ async function createConversation(req, res) {
     }
     res.status(201).json(newConversation);
   } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+async function deleteConversation(req, res) {
+  console.log("req.params", req.params);
+  try {
+    const { conversationId } = req.params;
+    const conversation = await Conversation.findById(conversationId);
+    if (!conversation) {
+      return res.status(404).json({ error: "Conversation not found" });
+    }
+    await Conversation.findOneAndDelete({ _id: conversationId });
+    res.json({ message: "Conversation deleted" });
+  } catch (error) {
+    console.log("error", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -71,5 +86,6 @@ module.exports = {
   getConversations,
   getConversation,
   createConversation,
+  deleteConversation,
   sendMessage,
 };

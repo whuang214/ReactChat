@@ -4,6 +4,7 @@ export const ConversationItem = ({
   conversation,
   currentConversation,
   setCurrentConversation,
+  handleDeleteConversation,
 }) => {
   const { user } = useAuth(); // Assuming useAuth is your auth hook that provides user data
 
@@ -42,6 +43,13 @@ export const ConversationItem = ({
           View Profile
         </a>
       </div>
+      {/* Delete Button */}
+      <button
+        onClick={() => handleDeleteConversation(conversation._id)} // Call handleDelete with the conversation ID
+        className="ml-auto bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded-xl"
+      >
+        Delete
+      </button>
     </div>
   );
 };
