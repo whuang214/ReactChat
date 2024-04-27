@@ -8,10 +8,11 @@ import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const ConversationList = ({
-  conversations,
-  setConversations,
+  privateConversations,
+  setPrivateConversations,
   currentConversation,
   setCurrentConversation,
+  fetchConversations,
 }) => {
   const [showModal, setShowModal] = useState(false); // State to manage modal visibility
   const [userContacts, setUserContacts] = useState([]);
@@ -21,10 +22,6 @@ export const ConversationList = ({
     fetchUserContacts();
   }, []);
 
-  const privateConversations = conversations.filter(
-    (conversation) => conversation.conversationType === "private"
-  );
-
   const handleAddConversationClick = () => {
     setShowModal(true); // Show the modal when the Add button is clicked
   };
@@ -32,7 +29,6 @@ export const ConversationList = ({
   // Function to create a new conversation
   const handleAddConversation = async (selectedContacts) => {
     const participantIds = selectedContacts.map((contact) => contact.value);
-    participantIds.push(user._id);
 
     axios
       .post(
@@ -41,13 +37,12 @@ export const ConversationList = ({
           participants: participantIds,
         },
         {
-          withCredentials: true, // If you are handling sessions/cookies, set this as needed
+          withCredentials: true,
         }
       )
       .then((response) => {
-        console.log("Conversation created successfully:", response.data);
-        setCurrentConversation(response.data);
         toast.success("Conversation created successfully");
+        fetchConversations();
       })
       .catch((error) => {
         console.error(
@@ -63,7 +58,7 @@ export const ConversationList = ({
         withCredentials: true,
       })
       .then(() => {
-        setConversations((prevConversations) =>
+        setPrivateConversations((prevConversations) =>
           prevConversations.filter(
             (conversation) => conversation._id !== conversationId
           )

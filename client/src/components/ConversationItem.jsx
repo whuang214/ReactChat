@@ -13,6 +13,8 @@ export const ConversationItem = ({
     conversation.participants[0];
 
   const handleClick = () => {
+    // if conversation is already selected, do nothing
+    if (currentConversation?._id === conversation._id) return;
     setCurrentConversation(conversation); // Function to set the current conversation
   };
 
@@ -20,7 +22,7 @@ export const ConversationItem = ({
     <div
       onClick={handleClick}
       className={`flex items-center p-4 rounded-lg cursor-pointer ${
-        currentConversation._id === conversation._id
+        currentConversation?._id === conversation._id
           ? "bg-gray-200"
           : "hover:bg-gray-100"
       }`}

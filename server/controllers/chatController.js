@@ -20,6 +20,7 @@ async function getConversations(req, res) {
 async function getConversation(req, res) {
   try {
     const { conversationId } = req.params;
+    console.log("conversationId", conversationId);
     const conversation = await Conversation.findById(conversationId)
       .populate("participants")
       .populate("messages");
@@ -35,13 +36,14 @@ async function getConversation(req, res) {
 async function createConversation(req, res) {
   try {
     const { participants } = req.body;
+    // add the current user to the participants array
+    participants.push(req.user._id);
     const newConversation = await Conversation.create({ participants });
     if (participants.length > 1) {
       // if participants is more than 1, then it is a group chat
       newConversation.type = "group";
     }
-    // Populate the participants array
-    await newConversation.populate("participants").execPopulate();
+    await newConversation.save();
     res.status(201).json(newConversation);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -49,7 +51,6 @@ async function createConversation(req, res) {
 }
 
 async function deleteConversation(req, res) {
-  console.log("req.params", req.params);
   try {
     const { conversationId } = req.params;
     const conversation = await Conversation.findById(conversationId);
