@@ -7,7 +7,7 @@ import { UserProfile } from "../components/UserProfile";
 import { Settings } from "../components/Settings";
 
 export const AuthenticatedApp = () => {
-  const [currentPage, setCurrentPage] = useState("profile");
+  const [currentPage, setCurrentPage] = useState("chat");
 
   return (
     <div className="flex w-full h-screen">
