@@ -64,6 +64,7 @@ export const ConversationList = ({
             (conversation) => conversation._id !== conversationId
           )
         );
+        updateConversationById(null);
         toast.success("Conversation deleted successfully");
       })
       .catch((error) => {
