@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const conversationSchema = new Schema(
   {
+    conversationName: { type: String }, // Name of the conversation
     participants: [
       { type: Schema.Types.ObjectId, ref: "User", required: true },
     ], // Array of User IDs participating in the conversation

@@ -31,7 +31,7 @@ export const ChatBody = ({ currentConversation, user }) => {
                 className={`max-w-xs md:max-w-md lg:max-w-lg rounded-2xl px-4 py-3 my-2 ${
                   message.sender.username === user.username
                     ? "bg-purple-600 text-white rounded-br-none"
-                    : "bg-white text-gray-800 rounded-bl-none"
+                    : "bg-gray-200 text-gray-800 rounded-bl-none"
                 }`}
               >
                 <div className="flex items-center">
@@ -44,7 +44,13 @@ export const ChatBody = ({ currentConversation, user }) => {
                     <p className="text-sm break-words break-all">
                       {message.content}
                     </p>
-                    <p className={`text-xs mt-1 text-gray-300`}>
+                    <p
+                      className={`text-xs mt-1 ${
+                        message.sender.username === user.username
+                          ? "text-gray-300"
+                          : "text-gray-400"
+                      }`}
+                    >
                       {message.sender.username} -{" "}
                       {new Date(message.createdAt).toLocaleString()}
                     </p>

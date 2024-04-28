@@ -91,7 +91,7 @@ export const ConversationList = ({
 
   return (
     <div className="panel">
-      <div className="flex items-center justify-between p-3 m-4">
+      <div className="flex items-center justify-between p-2 m-2">
         <h1 className="panel-header">Conversations</h1>
         <button
           className="btn-primary ml-2"
