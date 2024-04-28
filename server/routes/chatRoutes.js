@@ -9,6 +9,9 @@ router.delete(
   chatController.deleteConversation
 ); // delete a specific conversation
 router.post("/conversations", chatController.createConversation); // Create a new conversation
-router.post("/conversations/:conversationId", chatController.sendMessage); // Send a message to a conversation
+router.post(
+  "/conversations/:conversationId/message",
+  chatController.sendMessage
+); // Send a message to a conversation
 
 module.exports = router;

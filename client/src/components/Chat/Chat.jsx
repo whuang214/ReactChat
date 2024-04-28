@@ -57,7 +57,7 @@ export const Chat = () => {
 
   return (
     <div className="flex flex-grow m-7 ml-0">
-      <div className="flex-grow mr-7">
+      <div className="flex-grow mr-7 w-1/2">
         <GroupList
           currentConversation={currentConversation}
           updateConversationById={updateConversationById}
@@ -74,7 +74,11 @@ export const Chat = () => {
           fetchConversations={fetchConversations}
         />
       </div>
-      <ChatWindow user={user} currentConversation={currentConversation} />
+      <ChatWindow
+        user={user}
+        currentConversation={currentConversation}
+        updateConversationById={updateConversationById}
+      />
     </div>
   );
 };

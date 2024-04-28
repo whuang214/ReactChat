@@ -22,8 +22,15 @@ async function getConversation(req, res) {
     const { conversationId } = req.params;
     console.log("conversationId", conversationId);
     const conversation = await Conversation.findById(conversationId)
-      .populate("participants")
-      .populate("messages");
+      .populate({
+        path: "messages",
+        populate: {
+          path: "sender",
+          select: "username displayName avatarUrl",
+        },
+      })
+      .populate("participants");
+
     if (!conversation) {
       return res.status(404).json({ error: "Conversation not found" });
     }
@@ -68,19 +75,20 @@ async function deleteConversation(req, res) {
 async function sendMessage(req, res) {
   try {
     const { conversationId } = req.params;
-    const { sender, content } = req.body;
+    const { content } = req.body;
 
     const conversation = await Conversation.findById(conversationId);
     if (!conversation) {
       return res.status(404).json({ error: "Conversation not found" });
     }
 
-    const message = await Message.create({ sender, content });
+    const message = await Message.create({ sender: req.user._id, content });
     conversation.messages.push(message);
     await conversation.save();
 
     res.status(201).json(message);
   } catch (error) {
+    console.log("error", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
