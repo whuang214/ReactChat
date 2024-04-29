@@ -8,7 +8,7 @@ import { Settings } from "../components/Settings";
 
 export const AuthenticatedApp = () => {
   const [user, setUser] = useState(null);
-  const [currentPage, setCurrentPage] = useState("profile");
+  const [currentPage, setCurrentPage] = useState("chat");
 
   return (
     <div className="flex w-full h-screen">
