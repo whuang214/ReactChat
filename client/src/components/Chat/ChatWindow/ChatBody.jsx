@@ -4,8 +4,6 @@ export const ChatBody = ({ currentConversation, user }) => {
   const { messages } = currentConversation;
   const chatBodyRef = useRef(null);
 
-  console.log(messages);
-
   useEffect(() => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
