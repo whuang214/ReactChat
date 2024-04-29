@@ -1,8 +1,14 @@
 import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
 
 export const UserProfile = () => {
-
   const { user } = useAuth();
+  const [editMode, setEditMode] = useState(false);
+
+  const handleEditProfile = () => {
+    setEditMode(!editMode);
+  };
+
   return (
     <div className="flex p-10">
       <div className="m-auto bg-white rounded-lg shadow-lg p-4">
@@ -22,14 +28,16 @@ export const UserProfile = () => {
               <span className="text-sm text-gray-500">{user.location}</span>
             </div>
           </div>
-
-            
         ) : null }
-
-
+        <button onClick={handleEditProfile} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+          {editMode ? "Cancel Edit" : "Edit Profile"}
+        </button>
+        {editMode && (
+          <div className="mt-4">
+            {/* Add form fields for editing profile information here */}
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
-

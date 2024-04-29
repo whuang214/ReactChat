@@ -1,7 +1,17 @@
-import million from "million/compiler";
-import react from "@vitejs/plugin-react-swc";
-import { defineConfig } from "vite";
-
-export default defineConfig({
-  plugins: [million.vite({ auto: true }), react()],
-});
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      width: {
+        "1/8": "12.5%",
+        "1/10": "10%",
+      },
+      colors: {
+        "dark-purple": "#4b0082",
+        "light-purple": "#800080",
+      },
+    },
+  },
+  plugins: [],
+};
