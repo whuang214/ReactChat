@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 export const ChatHeader = ({ user, currentConversation }) => {
   if (!currentConversation) {
     return <div>Loading...</div>;

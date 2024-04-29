@@ -2,8 +2,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const session = require("express-session");
+const http = require("http");
 const passport = require("passport");
 const corsMiddleware = require("./config/corsConfig");
+const { init: initSocket } = require("./config/socketConfig"); // Ensure this path is correct
 
 dotenv.config(); // Load environment variables from .env file
 const app = express();
@@ -18,6 +20,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === "production" }, // Secure cookies in production
   })
 );
 
@@ -52,7 +55,12 @@ app.use("/api/user", isAuthenticated, require("./routes/userRoutes"));
 app.use("/api/chat", isAuthenticated, require("./routes/chatRoutes"));
 
 // Server setup
+const server = http.createServer(app);
+const io = initSocket(server); // Initialize Socket.IO with the HTTP server
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+
+// Replace app.listen with server.listen to ensure both Express and Socket.IO are using the same HTTP server
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
