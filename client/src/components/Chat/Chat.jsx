@@ -20,12 +20,6 @@ export const Chat = () => {
 
   // function to update the current conversation by id
   const updateConversationById = (id) => {
-    // if id is null then set the current conversation to the most recent conversation
-    if (!id) {
-      setCurrentConversation(null);
-      fetchConversations();
-      return;
-    }
     axios
       .get(`${API_URL}/chat/conversations/${id}`, {
         withCredentials: true,
