@@ -20,7 +20,6 @@ async function getConversations(req, res) {
 async function getConversation(req, res) {
   try {
     const { conversationId } = req.params;
-    console.log("conversationId", conversationId);
     const conversation = await Conversation.findById(conversationId)
       .populate({
         path: "messages",

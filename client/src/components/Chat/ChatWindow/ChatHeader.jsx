@@ -8,6 +8,15 @@ export const ChatHeader = ({ user, currentConversation }) => {
   // make sure otherParticipant is updated when the currentConversation changes
   // if current convo is private than the other participant is the other person in the convo
   // if current convo is group than the group name is the title
+  if (currentConversation.type === "group") {
+    return (
+      <div className="bg-purple-600 rounded-2xl shadow-lg text-white p-4 flex items-center">
+        <h2 className="text-lg font-semibold">
+          {currentConversation.conversationName}
+        </h2>
+      </div>
+    );
+  }
   const otherParticipant =
     currentConversation.participants.find((p) => p._id !== user._id) ||
     currentConversation.participants[0];
