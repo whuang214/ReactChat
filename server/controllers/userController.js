@@ -40,6 +40,29 @@ const addUser = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ error: "You must be logged in." });
+  }
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+    const { displayName, bio, location } = req.body;
+    user.displayName = displayName;
+    user.bio = bio;
+    user.location = location;
+    await user.save();
+    res.json({ user });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating the user." });
+  }
+}
+
 const getContacts = async (req, res) => {
   if (!req.user) {
     return res.status(401).json({ error: "You must be logged in." });
@@ -103,4 +126,5 @@ module.exports = {
   getContacts,
   getUserByID,
   addUser,
+  updateUser,
 };

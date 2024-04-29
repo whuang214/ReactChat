@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   profileUrl: String, // url to the user's github profile
   avatarUrl: String, // url to the user's github avatar
   location: String, // the user's location
+  bio: String, // the user's bio
   contacts: [
     {
       type: mongoose.Schema.Types.ObjectId,
