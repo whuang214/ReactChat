@@ -10,14 +10,6 @@ async function getConversations(req, res) {
     })
       .sort({ updatedAt: -1 })
       .populate("participants");
-    // go through all participants in each conversation and populate the username, displayName, and avatarUrl fields
-    conversations.forEach((conversation) => {
-      conversation.participants.forEach((participant) => {
-        if (!participant.displayName) {
-          participant.displayName = participant.username;
-        }
-      });
-    });
     res.json(conversations);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -41,11 +33,6 @@ async function getConversation(req, res) {
     if (!conversation) {
       return res.status(404).json({ error: "Conversation not found" });
     }
-    conversation.participants.forEach((participant) => {
-      if (!participant.displayName) {
-        participant.displayName = participant.username;
-      }
-    });
     res.json(conversation);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });

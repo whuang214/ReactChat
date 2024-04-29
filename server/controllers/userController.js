@@ -5,9 +5,6 @@ const getUser = (req, res) => {
   if (!req.user) {
     return res.json({ message: "No user is logged in." });
   }
-  if (!req.user.displayName) {
-    req.user.displayName = req.user.username;
-  }
   res.json({
     user: req.user,
     message: `${req.user.username} is logged in.`,
@@ -83,11 +80,6 @@ const getContacts = async (req, res) => {
   }
   try {
     const user = await User.findById(req.user._id).populate("contacts");
-    for (let i = 0; i < user.contacts.length; i++) {
-      if (!user.contacts[i].displayName) {
-        user.contacts[i].displayName = user.contacts[i].username;
-      }
-    }
     res.json({ contacts: user.contacts });
   } catch (error) {
     console.error(error);
@@ -112,12 +104,6 @@ const searchUser = async (req, res) => {
         { displayName: { $regex: term, $options: "i" } }, // Case-insensitive display name search
       ],
     });
-    // if no displayName for user then use username as displayName
-    results.forEach((user) => {
-      if (!user.displayName) {
-        user.displayName = user.username;
-      }
-    });
     res.json({ results });
   } catch (error) {
     console.error(error);
@@ -134,9 +120,6 @@ const getUserByID = async (req, res) => {
     const user = await User.findById(id);
     if (!user) {
       return res.status(404).json({ error: "User not found." });
-    }
-    if (!user.displayName) {
-      user.displayName = user.username;
     }
     res.json({ user });
   } catch (error) {
