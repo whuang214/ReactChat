@@ -15,7 +15,7 @@
 }
 @tailwind utilities;
 
-/* default styles */
+/* Default styles */
 * {
   margin: 0;
   padding: 0;
@@ -26,4 +26,23 @@
 
 h1 {
   @apply text-2xl font-bold mb-4;
+}
+/* Scrollbar Styles */
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff; /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 6px; /* roundness of the scroll thumb */
+  border: 3px solid #ffffff; /* creates padding around scroll thumb */
 }

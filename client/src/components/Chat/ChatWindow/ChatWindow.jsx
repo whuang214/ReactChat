@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { ChatHeader } from "./ChatHeader";
 import { ChatBody } from "./ChatBody";
 import { ChatFooter } from "./ChatFooter";
 
+import socketIOClient from "socket.io-client";
 const API_URL = import.meta.env.VITE_API_URL;
 import axios from "axios";
 
@@ -10,6 +12,8 @@ export const ChatWindow = ({
   currentConversation,
   updateConversationById,
 }) => {
+  const socket = socketIOClient("http://localhost:3000");
+
   // handleMessageSubmit function to send a message
   const handleMessageSubmit = (message) => {
     axios
@@ -27,6 +31,28 @@ export const ChatWindow = ({
         updateConversationById(currentConversation._id);
       });
   };
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("Connected to server");
+      socket.emit("joinConversation", currentConversation._id);
+    });
+
+    socket.on("fetchCurrentConversation", (data) => {
+      console.log(
+        "Update for conversation",
+        data.conversationId,
+        "received:",
+        data.update
+      );
+      updateConversationById(currentConversation._id);
+    });
+
+    return () => {
+      console.log("Disconnecting");
+      socket.disconnect();
+    };
+  }, [currentConversation]);
 
   if (!currentConversation) {
     return (

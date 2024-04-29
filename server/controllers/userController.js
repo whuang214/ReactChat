@@ -61,7 +61,40 @@ const updateUser = async (req, res) => {
       .status(500)
       .json({ error: "An error occurred while updating the user." });
   }
-}
+};
+const removeUser = async (req, res) => {
+  if (!req.params.id) {
+    return res.status(400).json({ error: "User ID is required." });
+  }
+  if (!req.user) {
+    console.log("User not logged in.");
+    return res
+      .status(401)
+      .json({ error: "You must be logged in to remove a user." });
+  }
+  try {
+    const currentUser = await User.findById(req.user._id);
+    const userToRemove = await User.findById(req.params.id);
+
+    if (!userToRemove) {
+      return res.status(404).json({ error: "User not found." });
+    }
+    // Check if the user to remove is in the current user's contacts
+    const index = currentUser.contacts.indexOf(userToRemove._id);
+    if (index === -1) {
+      return res.status(400).json({ error: "User is not in your contacts." });
+    }
+    // Remove the user from contacts
+    currentUser.contacts.splice(index, 1);
+    await currentUser.save();
+    res.json({ message: "User removed successfully from contacts." });
+  } catch (error) {
+    console.error("Server error:", error);
+    res.status(500).json({
+      error: "An error occurred while removing the user from contacts.",
+    });
+  }
+};
 
 const getContacts = async (req, res) => {
   if (!req.user) {
@@ -93,7 +126,6 @@ const searchUser = async (req, res) => {
         { displayName: { $regex: term, $options: "i" } }, // Case-insensitive display name search
       ],
     });
-    console.log("Search results:", results);
     res.json({ results });
   } catch (error) {
     console.error(error);
@@ -127,4 +159,5 @@ module.exports = {
   getUserByID,
   addUser,
   updateUser,
+  removeUser,
 };
