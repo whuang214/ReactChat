@@ -40,8 +40,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const editUser = async (data) => {
+    setLoading(true);
+    try {
+      const res = await axios.put(`${API_URL}/user/update`, data, {
+        withCredentials: true,
+      });
+      setUser(res.data.user);
+      setLoading(false);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
+    }
+  };
   return (
-    <AuthContext.Provider value={{ user, loading, error, updateUser }}>
+    <AuthContext.Provider value={{ user, loading, error, updateUser, editUser }}>
       {children}
     </AuthContext.Provider>
   );
