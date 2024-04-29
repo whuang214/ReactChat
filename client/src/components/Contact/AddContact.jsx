@@ -54,7 +54,7 @@ export const AddContact = () => {
         <h1 className="panel-header mb-2">Add Contact</h1>
         <div className="mb-7 flex items-center justify-center">
           <input
-            className="w-full p-2 rounded-lg border-2 border-gray-300 focus:border-purple-500 focus:ring focus:ring-purple-200 transition duration-200 ease-in-out"
+            className="w-full p-2 rounded-lg border-2 border-gray-300 focus:border-purple focus:ring focus:ring-purple-light transition duration-200 ease-in-out"
             type="text"
             placeholder="Search by username or display name"
             value={searchTerm}

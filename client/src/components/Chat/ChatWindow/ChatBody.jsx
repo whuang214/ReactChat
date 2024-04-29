@@ -28,7 +28,7 @@ export const ChatBody = ({ currentConversation, user }) => {
               <div
                 className={`max-w-xs md:max-w-md lg:max-w-lg rounded-2xl px-4 py-3 my-2 ${
                   message.sender.username === user.username
-                    ? "bg-purple-600 text-white rounded-br-none"
+                    ? "bg-purple text-white rounded-br-none"
                     : "bg-gray-200 text-gray-800 rounded-bl-none"
                 }`}
               >

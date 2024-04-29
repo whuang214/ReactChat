@@ -67,7 +67,7 @@ export const ContactDetails = ({ clickedUser, loggedInUser }) => {
         <>
           <div className="profile-header mb-6">
             <img
-              className="w-32 h-32 rounded-full border-4 border-purple-300 mb-4"
+              className="w-32 h-32 rounded-full border-4 border-purple-light mb-4"
               src={clickedUser.avatarUrl}
               alt={clickedUser.displayName}
             />
@@ -76,7 +76,7 @@ export const ContactDetails = ({ clickedUser, loggedInUser }) => {
             </h2>
             <a
               href={clickedUser.profileUrl}
-              className="text-md text-purple-500 hover:text-purple-600 hover:underline"
+              className="text-md text-purple hover:text-purple-dark hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -93,16 +93,16 @@ export const ContactDetails = ({ clickedUser, loggedInUser }) => {
                 </button>
               ))}
           </div>
-          <div className="flex flex-col p-4 bg-purple-100 rounded-lg">
+          <div className="flex flex-col p-4 bg-purple-light rounded-lg">
             <div className="mb-2">
-              <span className="font-bold text-purple-700">GitHub ID: </span>
+              <span className="font-bold text-purple-dark">GitHub ID: </span>
               {clickedUser.githubId}
             </div>
             <div className="mb-2">
-              <span className="font-bold text-purple-700">Profile URL: </span>
+              <span className="font-bold text-purple-dark">Profile URL: </span>
               <a
                 href={clickedUser.profileUrl}
-                className="text-purple-500 hover:text-purple-600 hover:underline"
+                className="text-purple hover:text-purple-dark hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -110,7 +110,7 @@ export const ContactDetails = ({ clickedUser, loggedInUser }) => {
               </a>
             </div>
             <div>
-              <span className="font-bold text-purple-700">Location: </span>
+              <span className="font-bold text-purple-dark">Location: </span>
               {clickedUser.location || "Not provided"}
             </div>
           </div>

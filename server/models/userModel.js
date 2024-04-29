@@ -12,6 +12,11 @@ const userSchema = new mongoose.Schema({
   avatarUrl: String, // url to the user's github avatar
   location: String, // the user's location
   bio: String, // the user's bio
+  colors: {
+    mainColor: String,
+    darkColor: String,
+    lightColor: String,
+  },
   contacts: [
     {
       type: mongoose.Schema.Types.ObjectId,
