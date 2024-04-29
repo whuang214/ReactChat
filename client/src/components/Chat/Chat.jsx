@@ -63,25 +63,23 @@ export const Chat = () => {
         }
       });
   };
-  const handleAddConversationClick = () => {
-    setShowModal(true); // Show the modal when the Add button is clicked
-  };
-  const handleAddConversation = async (selectedContacts) => {
+  const handleAddConversation = (selectedContacts, conversationName = "") => {
     const participantIds = selectedContacts.map((contact) => contact.value);
+
+    // Prepare the data object for the API request
+    const data = {
+      participants: participantIds,
+      name: conversationName,
+    };
+
     axios
-      .post(
-        `${API_URL}/chat/conversations`,
-        {
-          participants: participantIds,
-        },
-        {
-          withCredentials: true,
-        }
-      )
+      .post(`${API_URL}/chat/conversations`, data, {
+        withCredentials: true,
+      })
       .then((response) => {
         toast.success("Conversation created successfully");
-        updateConversationById(response.data._id);
-        fetchConversations();
+        updateConversationById(response.data._id); // Update UI accordingly
+        fetchConversations(); // Refresh the list of conversations
       })
       .catch((error) => {
         toast.error("Failed to create conversation");
@@ -91,6 +89,7 @@ export const Chat = () => {
         );
       });
   };
+
   const handleDeleteConversation = (conversationId) => {
     axios
       .delete(`${API_URL}/chat/conversations/${conversationId}`, {
@@ -102,6 +101,12 @@ export const Chat = () => {
             (conversation) => conversation._id !== conversationId
           )
         );
+        setGroupConversations((prevConversations) =>
+          prevConversations.filter(
+            (conversation) => conversation._id !== conversationId
+          )
+        );
+        setCurrentConversation(null);
         toast.success("Conversation deleted successfully");
       })
       .catch((error) => {
@@ -128,20 +133,26 @@ export const Chat = () => {
 
   return (
     <div className="flex flex-grow m-7 ml-0">
-      <div className="flex-grow mr-7 w-1/2">
+      <div className="flex flex-col flex-grow mr-7 w-1/2">
+        <button
+          className="btn-primary mb-7 rounded-xl w-full h-1/7"
+          onClick={() => setShowModal(true)}
+        >
+          New Conversation
+        </button>
         <GroupList
+          groupConversations={groupConversations}
           currentConversation={currentConversation}
           updateConversationById={updateConversationById}
-          groupConversations={groupConversations}
-          setGroupConversations={setGroupConversations}
+          handleDeleteConversation={handleDeleteConversation}
           fetchConversations={fetchConversations}
         />
+
         <ConversationList
           user={user}
           privateConversations={privateConversations}
           updateConversationById={updateConversationById}
           handleDeleteConversation={handleDeleteConversation}
-          handleAddConversationClick={handleAddConversationClick}
           setPrivateConversations={setPrivateConversations}
           currentConversation={currentConversation}
           fetchConversations={fetchConversations}

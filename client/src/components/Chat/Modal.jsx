@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Select from "react-select";
 import { Option, SingleValue, MultiValue } from "./CustomSelectComponents";
+import { toast } from "react-toastify";
 
 export const Modal = ({
   handleAddConversation,
@@ -9,6 +10,7 @@ export const Modal = ({
 }) => {
   const modalRef = useRef(null); // Create a ref for the modal content
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [conversationName, setConversationName] = useState(""); // State to store the conversation name
 
   const options = userContacts.map((contact) => ({
     value: contact._id,
@@ -17,7 +19,7 @@ export const Modal = ({
   }));
 
   const handleChange = (selectedOptions) => {
-    setSelectedOptions(selectedOptions);
+    setSelectedOptions(selectedOptions || []);
   };
 
   const handleClickOutside = (event) => {
@@ -27,7 +29,11 @@ export const Modal = ({
   };
 
   const handleAddConversationClick = () => {
-    handleAddConversation(selectedOptions);
+    if (selectedOptions.length > 1 && !conversationName) {
+      toast.error("Must enter conversation name for group conversations");
+      return;
+    }
+    handleAddConversation(selectedOptions, conversationName);
     setShowModal(false);
   };
 
@@ -67,6 +73,18 @@ export const Modal = ({
             placeholder="Select contacts..."
           />
         </div>
+        {/* Conditional Input for Conversation Name */}
+        {selectedOptions.length > 1 && (
+          <div className="mb-4">
+            <input
+              type="text"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter conversation name"
+              value={conversationName}
+              onChange={(e) => setConversationName(e.target.value)}
+            />
+          </div>
+        )}
         {/* Action buttons */}
         <div className="flex justify-end mt-4">
           <button className="btn-primary" onClick={handleAddConversationClick}>

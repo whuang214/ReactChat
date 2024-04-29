@@ -6,14 +6,25 @@ export const ConversationItem = ({
   updateConversationById,
   handleDeleteConversation,
 }) => {
-  const { user } = useAuth(); // Assuming useAuth is your auth hook that provides user data
+  const { user } = useAuth();
 
-  const otherParticipant =
-    conversation.participants.find((p) => p._id !== user._id) ||
-    conversation.participants[0];
+  // Prepare variables to hold name and avatar URL conditionally based on conversation type
+  let name, icon, subtext;
+
+  if (conversation.type === "group") {
+    // For group conversations
+    name = conversation.name || "Unnamed Group";
+    icon = "https://via.placeholder.com/50"; // Placeholder for group (you might want to use a group icon)
+  } else {
+    // For private conversations, find the other participant
+    const otherParticipant =
+      conversation.participants.find((p) => p._id !== user._id) ||
+      conversation.participants[0];
+    name = otherParticipant.displayName;
+    icon = otherParticipant.avatarUrl || "https://via.placeholder.com/50";
+  }
 
   const handleClick = () => {
-    // if conversation is already selected, do nothing
     if (currentConversation?._id === conversation._id) return;
     updateConversationById(conversation._id); // Function to set the current conversation
   };
@@ -27,27 +38,12 @@ export const ConversationItem = ({
           : "hover:bg-gray-100"
       }`}
     >
-      <img
-        src={otherParticipant.avatarUrl || "https://via.placeholder.com/50"}
-        alt="Avatar"
-        className="w-10 h-10 rounded-full mr-3"
-      />
+      <img src={icon} alt="Avatar" className="w-10 h-10 rounded-full mr-3" />
       <div>
-        <h3 className="text-sm font-semibold">
-          {otherParticipant.displayName}
-        </h3>
-        <a
-          href={otherParticipant.profileUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-blue-500 hover:text-blue-600"
-        >
-          View Profile
-        </a>
+        <h3 className="text-sm font-semibold">{name}</h3>
       </div>
-      {/* Delete Button */}
       <button
-        onClick={() => handleDeleteConversation(conversation._id)} // Call handleDelete with the conversation ID
+        onClick={() => handleDeleteConversation(conversation._id)}
         className="ml-auto bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded-xl"
       >
         Delete

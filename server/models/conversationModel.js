@@ -3,12 +3,12 @@ const { Schema } = mongoose;
 
 const conversationSchema = new Schema(
   {
-    conversationName: { type: String }, // Name of the conversation
+    name: { type: String, default: "" }, // Name of the conversation
     participants: [
       { type: Schema.Types.ObjectId, ref: "User", required: true },
     ], // Array of User IDs participating in the conversation
     messages: [{ type: Schema.Types.ObjectId, ref: "Message" }], // Array of message IDs associated with the conversation
-    conversationType: { type: String, default: "private" }, // Type of conversation (private or group)
+    type: { type: String, default: "private" }, // Type of conversation (private or group)
   },
   { timestamps: true }
 );
