@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true); // Set loading state to true before fetching data
     try {
       const res = await axios.get(`${API_URL}/user`, {
-        withCredentials: truewh,
+        withCredentials: true,
       });
       setUser(res.data.user);
       setLoading(false);

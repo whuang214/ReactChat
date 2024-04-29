@@ -5,6 +5,9 @@ const getUser = (req, res) => {
   if (!req.user) {
     return res.json({ message: "No user is logged in." });
   }
+  if (!req.user.displayName) {
+    req.user.displayName = req.user.username;
+  }
   res.json({
     user: req.user,
     message: `${req.user.username} is logged in.`,
@@ -40,12 +43,51 @@ const addUser = async (req, res) => {
   }
 };
 
+const removeUser = async (req, res) => {
+  if (!req.params.id) {
+    return res.status(400).json({ error: "User ID is required." });
+  }
+  if (!req.user) {
+    console.log("User not logged in.");
+    return res
+      .status(401)
+      .json({ error: "You must be logged in to remove a user." });
+  }
+  try {
+    const currentUser = await User.findById(req.user._id);
+    const userToRemove = await User.findById(req.params.id);
+
+    if (!userToRemove) {
+      return res.status(404).json({ error: "User not found." });
+    }
+    // Check if the user to remove is in the current user's contacts
+    const index = currentUser.contacts.indexOf(userToRemove._id);
+    if (index === -1) {
+      return res.status(400).json({ error: "User is not in your contacts." });
+    }
+    // Remove the user from contacts
+    currentUser.contacts.splice(index, 1);
+    await currentUser.save();
+    res.json({ message: "User removed successfully from contacts." });
+  } catch (error) {
+    console.error("Server error:", error);
+    res.status(500).json({
+      error: "An error occurred while removing the user from contacts.",
+    });
+  }
+};
+
 const getContacts = async (req, res) => {
   if (!req.user) {
     return res.status(401).json({ error: "You must be logged in." });
   }
   try {
     const user = await User.findById(req.user._id).populate("contacts");
+    for (let i = 0; i < user.contacts.length; i++) {
+      if (!user.contacts[i].displayName) {
+        user.contacts[i].displayName = user.contacts[i].username;
+      }
+    }
     res.json({ contacts: user.contacts });
   } catch (error) {
     console.error(error);
@@ -70,7 +112,12 @@ const searchUser = async (req, res) => {
         { displayName: { $regex: term, $options: "i" } }, // Case-insensitive display name search
       ],
     });
-    console.log("Search results:", results);
+    // if no displayName for user then use username as displayName
+    results.forEach((user) => {
+      if (!user.displayName) {
+        user.displayName = user.username;
+      }
+    });
     res.json({ results });
   } catch (error) {
     console.error(error);
@@ -88,6 +135,9 @@ const getUserByID = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found." });
     }
+    if (!user.displayName) {
+      user.displayName = user.username;
+    }
     res.json({ user });
   } catch (error) {
     console.error(error);
@@ -103,4 +153,5 @@ module.exports = {
   getContacts,
   getUserByID,
   addUser,
+  removeUser,
 };

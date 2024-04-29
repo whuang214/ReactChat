@@ -117,9 +117,9 @@ export const AddContact = () => {
         </div>
       </div>
       {selectedUser ? (
-        <ContactDetails user={selectedUser} />
+        <ContactDetails clickedUser={selectedUser} loggedInUser={user} />
       ) : (
-        <ContactDetails user={user} />
+        <ContactDetails clickedUser={user} loggedInUser={user} />
       )}
     </div>
   );
