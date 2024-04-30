@@ -1,8 +1,10 @@
 import { useState, useCallback } from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
+import { useAuth } from "../../../context/AuthContext";
 
 export const ChatFooter = ({ handleMessageSubmit }) => {
   const [message, setMessage] = useState("");
+  const { user } = useAuth();
 
   const handleSubmit = useCallback(() => {
     if (message.trim() !== "") {
@@ -26,7 +28,7 @@ export const ChatFooter = ({ handleMessageSubmit }) => {
         }}
       />
       <button
-        className="btn-primary"
+        className={"btn-primary" + " bg-" + `${user?.colors.mainColor}` + " hover:bg-" + `${user?.colors.darkColor}`}
         onClick={handleSubmit}
         aria-label="Send Message"
       >

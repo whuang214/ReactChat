@@ -1,30 +1,21 @@
 import { useAuth } from "../context/AuthContext";
+import "./Sidebar.css"
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import { BlockPicker, ChromePicker, GithubPicker } from 'react-color';
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const Settings = () => {
-  const {user, loading} = useAuth();
+  const {user} = useAuth();
   const [color, setColor] = useState('#ffffff'); // Initial color state
-  const [data, setData] = useState(null);
+  
 
-  // const getColors = async () => {
-  //   try{
-  //     const response = await axios.get(`${API_URL}/user/getSettings`, {withCredentials: true,})
-  //     .then((response) => {
-  //       console.log(response.data.mainColor);
-  //       setData(response.data)
-  //       console.log(data);
-  //     });
-  //   } catch (error) {
-  //     console.error(error)
-  //   } 
-  // }
 
   const handleColorChange = async (newColor) => {
     setColor(newColor.hex)
+    // setColors();
     await updateUser(getColorName(newColor.hex));
+    
   };
   
   function getColorName(colorCode) {
@@ -69,13 +60,14 @@ export const Settings = () => {
 
     console.log(newColor)
     try {
+        
       // make post request here
       const response = await axios.post(`${API_URL}/user/updateSettings`,
           {
             colors: {
-              mainColor:  "bg-" + newColor,
-              darkColor:  "bg-" + newColor + "-dark",
-              lightColor: "bg-" + newColor + "-light",
+              mainColor:  newColor,
+              darkColor:  newColor + "-dark",
+              lightColor: newColor + "-light",
             }
           },
           {
@@ -88,17 +80,19 @@ export const Settings = () => {
     }
   }
 
-  // useEffect(() => {
-  //   // Fetch data from the server
-  //   getColors().then((result) => {
-  //     setData(result);
-  //   });
-  // }, []);
+  
 
-  // if (!data) {
-  //   // Render loading indicator or placeholder
-  //   return <div>Loading...</div>;
-  // }
+  useEffect(() => {
+    // Code to run on page load
+    console.log('Component has mounted');
+    //setColors();
+    
+
+    // Clean-up function (optional)
+    return () => {
+      console.log('Component will unmount');
+    };
+  }, []);
 
   return (
     <div className="m-auto bg-white rounded-lg shadow-lg p-4 overflow-auto">
@@ -119,10 +113,6 @@ export const Settings = () => {
          /*$cyan:  */  "#22d3ee",
        ]}
            color={color} onChange={handleColorChange} />
-           
-           <div className={user.colors.mainColor}>main</div>
-           <div className={user.colors.darkColor}>dark</div>
-           <div className={user.colors.lightColor}>light</div>
      </div>
   </div>
   );

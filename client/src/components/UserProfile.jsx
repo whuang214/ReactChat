@@ -1,5 +1,5 @@
 import { useAuth } from "../context/AuthContext.jsx";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 export const UserProfile = () => {
   const { user, editUser } = useAuth();
@@ -16,6 +16,7 @@ export const UserProfile = () => {
 editUser(user);
     setEditMode(false);
   };
+
 
   return (
     <div className="flex p-10 max-w-screen-md m-auto">
@@ -38,7 +39,7 @@ editUser(user);
             </div>
           </div>
         ) : null }
-        <button onClick={handleEditProfile} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+        <button id="color" onClick={handleEditProfile} className={"mt-4 text-white py-2 px-4 rounded bg-" + `${user?.colors.mainColor}`}>
           {editMode ? "Cancel Edit" : "Edit Profile"}
         </button>
         {editMode && (
@@ -47,7 +48,7 @@ editUser(user);
             <form onSubmit={handleSubmit}> 
               <textarea type="text" placeholder="Bio" className="border border-gray-300 p-2 rounded w-full" defaultValue={user.bio} />
             
-              <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded mt-2">
+              <button type="submit" className={"bg-blue-500 text-white py-2 px-4 rounded mt-2 bg-" + `${user?.colors.mainColor}`}>
                 Save
               </button>
             </form>
