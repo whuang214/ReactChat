@@ -47,7 +47,6 @@ passport.use(
 // saves the user id to the session
 passport.serializeUser((user, done) => {
   console.log("Serializing user, " + user._id);
-  
   done(null, user._id);
 });
 
