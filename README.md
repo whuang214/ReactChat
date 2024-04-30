@@ -33,6 +33,7 @@ React Chat is an innovative web application designed to revolutionize online com
 
 ## Development Challenges and Solutions
 * **Data Flow Management:** Designed a coherent architecture to manage data flow between frontend and backend components, ensuring scalability and maintainability.
+* **Microservices Architecture:** Implemented a microservices architecture to enhance scalability and maintainability, ensuring that each component can be developed, deployed, and scaled independently.
 * **Desynchronization Issues:** Addressed component loading failures by ensuring data from the backend is fetched before rendering frontend components.
 * **Cross-Site Restrictions:** Overcame CORS (Cross-Origin Resource Sharing) issues by configuring the server to allow requests from the client, enabling seamless communication between the two.
 * **Session Management:** Originally had session based authentication but had problems since application is a distributed system. Switched to JWT for secure session management.
