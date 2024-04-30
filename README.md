@@ -14,7 +14,7 @@ https://vercel.com/sso/access/request?next=%2Fsso-api%3Furl%3Dhttps%253A%252F%25
 2.) When testing, utilize two different accounts to test messaging feature between users
 
 ## Technologies/Frameworks
-#React#
+**React**
 React served as the frontend framework, providing a robust foundation for building dynamic and interactive user interfaces. 
 
 **JavaScript**
@@ -32,17 +32,21 @@ Nodemon, a utility tool, facilitated a smooth development workflow by automatica
 **Vite**
 Vite, a fast build tool, optimized the development process by providing rapid bundling and hot module replacement capabilities, enhancing productivity and accelerating the deployment of the web application. 
 
+**TailwindCSS**
+Tailwind CSS is a front end CSS framework that allows styling without leaving the HTML through pre-build classes.  
+
+
 Collectively, these technologies synergized to create a feature-rich, secure, and performant web application, delivering an exceptional user experience while simplifying development and maintenance processes.
 
 ## Challenges
 Some challenges when creating the project was designing a coherent architecture that effectively manages the flow of data between frontend and backend components. Decisions regarding the seperation of data flow patterns, and API design must be made to ensure scalability, maintainability, and performance. Along with this desynchronization was a challenge as front end styling depended on information stored in the backend. So often components failed to load as the frontend would load first without gathering the data from the backend. Another challenge was getting the cookies to funciton on the production environment. This was solved by using a custom domain which had cross site restrictions. Since this concept project is hosted on shared hosting, the site may take a while to wake from sleep (1-2 minutes) on inital loading. 
 
 ## Group
-#William: Worked on chat feature, main UI layout
-#Brandon: Worked on profile feature and backed
-#Lucca: Worked on profile feature and frontend
-#Ryan: Worked on settings feature and frontend
-#Ethan: Worked on settings feature and backend
+- William: Worked on chat feature, main UI layout
+- Brandon: Worked on profile feature and backend
+- Lucca: Worked on profile feature and frontend
+- Ryan: Worked on settings feature and frontend
+- Ethan: Worked on settings feature and backend
 
 ## Accessibility
 One feature that was implemented for accessiblity was the ability to change the UI's color. Offered are 10 different colors that users can chosoe from. This specific feature was implemented to help those who are color blind navigate the application better. Large and bold text with a different color was used to indicate large sections of importance. "Panes/Boxes" were used to seperate information and windows. Icons were utilized to dispaly lots of information in a small space. Hover/focus and select animations were used to give more feedback to the user, making the app easier to use.
