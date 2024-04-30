@@ -5,6 +5,7 @@ import { ChatFooter } from "./ChatFooter";
 
 import socketIOClient from "socket.io-client";
 const API_URL = import.meta.env.VITE_API_URL;
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 import axios from "axios";
 
 export const ChatWindow = ({
@@ -12,7 +13,7 @@ export const ChatWindow = ({
   currentConversation,
   updateConversationById,
 }) => {
-  const socket = socketIOClient("http://localhost:3000");
+  const socket = socketIOClient(SOCKET_URL);
 
   // handleMessageSubmit function to send a message
   const handleMessageSubmit = (message) => {
