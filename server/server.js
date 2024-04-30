@@ -45,6 +45,8 @@ function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
+    console.log("User is not authenticated");
+    console.log(req);
     return res.status(401).json({ error: "User is not authenticated" });
   }
 }
