@@ -19,19 +19,11 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-<<<<<<< HEAD
     saveUninitialized: true,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
       sameSite: process.env.NODE_ENV === "production",
-=======
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Secure cookies on production
-      maxAge: 1000 * 60 * 60 * 24, // 24 hours
->>>>>>> refs/remotes/origin/main
     },
   })
 );
