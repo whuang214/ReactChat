@@ -27,8 +27,6 @@ Nodemon, a utility tool, facilitated a smooth development workflow by automatica
  - Vite:
 Vite, a fast build tool, optimized the development process by providing rapid bundling and hot module replacement capabilities, enhancing productivity and accelerating the deployment of the web application. 
 
-Collectively, these technologies synergized to create a feature-rich, secure, and performant web application, delivering an exceptional user experience while simplifying development and maintenance processes.
-
 ## Challenges
 Some challenges when creating the project was designing a coherent architecture that effectively manages the flow of data between frontend and backend components. Decisions regarding the seperation of data flow patterns, and API design must be made to ensure scalability, maintainability, and performance. Along with this desynchronization was a challenge as front end styling depended on information stored in the backend. So often components failed to load as the frontend would load first without gathering the data from the backend. 
 ## Group
