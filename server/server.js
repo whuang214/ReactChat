@@ -41,8 +41,8 @@ app.use(corsMiddleware);
 
 // Middleware to check if the user is authenticated using Passport
 function isAuthenticated(req, res, next) {
+  console.log(req.session);
   console.log(req.user);
-  console.log(req.body);
   if (req.isAuthenticated()) {
     return next();
   } else {
