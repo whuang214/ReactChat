@@ -19,11 +19,19 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
+<<<<<<< HEAD
     saveUninitialized: true,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
       sameSite: process.env.NODE_ENV === "production",
+=======
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Secure cookies on production
+      maxAge: 1000 * 60 * 60 * 24, // 24 hours
+>>>>>>> refs/remotes/origin/main
     },
   })
 );
@@ -38,7 +46,6 @@ app.use(passport.session());
 
 // Middleware for development environment
 if (process.env.NODE_ENV === "development") {
-
 }
 app.use(morgan("dev"));
 
@@ -47,6 +54,8 @@ app.use(corsMiddleware);
 
 // Middleware to check if the user is authenticated using Passport
 function isAuthenticated(req, res, next) {
+  console.log(req.session);
+  console.log(req.user);
   if (req.isAuthenticated()) {
     return next();
   } else {

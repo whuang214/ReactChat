@@ -9,29 +9,33 @@ const githubAuth = (req, res, next) => {
 };
 
 // Function to handle callback from GitHub after authentication
-const githubCallback = (req, res) => {
-  const callback = passport.authenticate(
+const githubCallback = (req, res, next) => {
+  const redirectUrl =
+    process.env.NODE_ENV === "production"
+      ? process.env.PROD_FRONTEND_ORIGIN
+      : process.env.DEV_FRONTEND_ORIGIN;
+  passport.authenticate(
     "github",
-    { failureRedirect: "/login" },
+    { failureRedirect: redirectUrl },
     (err, user, info) => {
       if (err) {
+        console.log(err);
         return res.status(401).json({ error: "Authentication failed" });
       }
       if (!user) {
-        return res.redirect("/login");
+        console.log("User not found");
+        return res.redirect(redirectUrl);
       }
       req.logIn(user, (err) => {
         if (err) {
+          console.log(err);
           return res.status(401).json({ error: "Login failed" });
         }
-        if (process.env.NODE_ENV === "production") {
-          return res.redirect(process.env.PROD_FRONTEND_ORIGIN);
-        }
-        res.redirect(process.env.DEV_FRONTEND_ORIGIN);
+        console.log(`Redirecting to ${redirectUrl}`);
+        res.redirect(redirectUrl);
       });
     }
-  );
-  callback(req, res);
+  )(req, res, next);
 };
 
 // Function to handle logout
