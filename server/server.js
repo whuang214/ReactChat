@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config(); // Load environment variables from .env file
 const morgan = require("morgan");
 const http = require("http");
 const passport = require("passport");
@@ -7,7 +8,6 @@ const corsMiddleware = require("./config/corsConfig");
 const authenticateToken = require("./config/jwtConfig"); // Ensure this path is correct
 const { init: initSocket } = require("./config/socketConfig");
 
-dotenv.config(); // Load environment variables from .env file
 const app = express();
 
 // Middleware setup

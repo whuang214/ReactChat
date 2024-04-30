@@ -1,6 +1,7 @@
 const socketio = require("socket.io");
 const mongoose = require("mongoose");
 const Conversation = require("../models/conversationModel"); // Ensure this path correctly points to your Conversation model
+require("dotenv").config();
 
 let io;
 let conversationChangeStreams = {};

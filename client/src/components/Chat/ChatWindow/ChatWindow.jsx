@@ -40,12 +40,6 @@ export const ChatWindow = ({
     });
 
     socket.on("fetchCurrentConversation", (data) => {
-      console.log(
-        "Update for conversation",
-        data.conversationId,
-        "received:",
-        data.update
-      );
       updateConversationById(currentConversation._id);
     });
 
