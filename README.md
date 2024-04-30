@@ -14,17 +14,17 @@ https://vercel.com/sso/access/request?next=%2Fsso-api%3Furl%3Dhttps%253A%252F%25
 2.) When testing, utilize two different accounts to test messaging feature between users
 
 ## Technologies/Frameworks
- - React
+ - React:
 React served as the frontend framework, providing a robust foundation for building dynamic and interactive user interfaces. 
- - JavaScript
+ - JavaScript:
 JavaScript, both on the frontend and backend, facilitated seamless communication between the client and server, enabling real-time updates and data manipulation. 
- - Mongoose
+ - Mongoose:
 Mongoose, a MongoDB object modeling tool, streamlined database interactions by providing a schema-based solution for managing application data. 
- - Passport
+ - Passport:
 Passport.js, a popular authentication middleware for Node.js, enhanced security by enabling authentication and authorization processes, ensuring that only authorized users could access protected routes and resources. 
- - Nodemon
+ - Nodemon:
 Nodemon, a utility tool, facilitated a smooth development workflow by automatically restarting the server upon file changes, eliminating the need for manual server restarts.
- - Vite
+ - Vite:
 Vite, a fast build tool, optimized the development process by providing rapid bundling and hot module replacement capabilities, enhancing productivity and accelerating the deployment of the web application. 
 
 Collectively, these technologies synergized to create a feature-rich, secure, and performant web application, delivering an exceptional user experience while simplifying development and maintenance processes.
