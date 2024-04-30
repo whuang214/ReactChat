@@ -1,52 +1,57 @@
-# React Chat
-For your final project, you'll implement a web application that exhibits understanding of the course materials. 
-This project should provide an opportunity to both be creative and to pursue individual research and learning goals.
+# ReactChat
 
-## General description
-React Chat is a simple online communication tool. Users log in using their GitHub account, customize their profile with a bio and theme, and easily find and message friends. With its user-friendly interface, React Chat streamlines the process of connecting and chatting, making online interactions more enjoyable and personalized.
+## Overview
+React Chat is an innovative web application designed to revolutionize online communication. By leveraging the power of React, JavaScript, and other cutting-edge technologies, we've created a platform that combines simplicity with advanced functionality. Users can log in with their GitHub accounts, personalize their profiles, and effortlessly connect with friends for instant messaging. React Chat stands out with its intuitive interface, responsive design, and the ability to create group chats, all wrapped in a customizable UI that adapts to users' preferences.
 
-React Chat allows users to make group chats, and customize the look of the User Interface with multiple different color options for the program. Furthermore, React Chat's intuitive interface and responsive design ensure a seamless user experience across various devices, allowing users to stay connected and chat on the go.
+**Deployed Site:** [ReactChat](https://webwarefin.wpi.brandonlui.com/)
 
-https://vercel.com/sso/access/request?next=%2Fsso-api%3Furl%3Dhttps%253A%252F%252Fcs4241-final-project-q0iml6m6s-brandon-luis-projects-aa96a0c8.vercel.app%252F%26nonce%3Dede224f52ffc234bfb579027aba227338c3cf9775754d3bc160a30e25c2e9746&url=cs4241-final-project-q0iml6m6s-brandon-luis-projects-aa96a0c8.vercel.app
+## Installation
+1. Clone the repo and install dependencies (server and client directory):
+2. Fill out the `.env` file
+3. Start the server with `npm run dev` (server and client directory):
+4. Open the client's local server in your browser
 
-## Information
-1.) A GitHub account is necessary to utilize the application
-2.) When testing, utilize two different accounts to test messaging feature between users
+## Stakeholders
+**Users:** Individuals seeking a user-friendly, feature-rich chat application for personal or professional use.
+**Developers:** Software engineers interested in exploring modern web development technologies and best practices.
+**Designers:** UI/UX designers looking to create accessible, customizable, and visually appealing web applications.
+**Businesses:** Companies seeking to enhance internal communication and collaboration among employees.
 
-## Technologies/Frameworks
-**React**
-React served as the frontend framework, providing a robust foundation for building dynamic and interactive user interfaces. 
+## Key Features
+**GitHub Authentication:** Seamlessly integrate with GitHub for secure login.
+**Profile Customization:** Allow users to add a bio and choose a theme to personalize their profile.
+**Messaging:** Streamline the process of finding and messaging friends, with support for group chats.
+**Responsive Design:** Ensure a consistent and enjoyable user experience across devices.
+**Color Customization:** Offer a palette of 10 colors for users to customize the look and feel of the application, enhancing accessibility for color-blind users.
 
-**JavaScript**
-JavaScript, both on the frontend and backend, facilitated seamless communication between the client and server, enabling real-time updates and data manipulation. 
+## Technologies and Frameworks
+**Frontend:** React provides a dynamic and interactive user interface.
+**Backend:** JavaScript and Node.js facilitate real-time updates and data manipulation.
+**Database:** Mongoose simplifies MongoDB interactions with a schema-based approach.
+**Authentication:** Passport.js enhances security with robust authentication and authorization mechanisms.
+**Development Tools:** Nodemon automates server restarts, and Vite accelerates the development process with fast bundling and hot module replacement.
+**Styling:** TailwindCSS enables efficient styling directly in HTML, offering a flexible and modern design system.
+## Development Challenges and Solutions
+**Data Flow Management:** Designed a coherent architecture to manage data flow between frontend and backend components, ensuring scalability and maintainability.
+**Desynchronization Issues:** Addressed component loading failures by ensuring data from the backend is fetched before rendering frontend components.
+**Cross-Site Restrictions:** Overcame cookie functionality issues in the production environment by implementing a custom domain with appropriate cross-site restrictions.
 
-**Mongoose**
-Mongoose, a MongoDB object modeling tool, streamlined database interactions by providing a schema-based solution for managing application data. 
+## Team Contributions
+**William:** Led the development of the chat feature and the main UI layout.
+**Ethan:** Developed the settings feature and supported backend operations.
+**Ryan:** Worked on the settings feature and frontend implementation.
+**Brandon:** Developed the profile feature and backend development.
+**Lucca:** Contributed to the profile feature and frontend development.
 
-**Passport**
-Passport.js, a popular authentication middleware for Node.js, enhanced security by enabling authentication and authorization processes, ensuring that only authorized users could access protected routes and resources. 
+## Accessibility Enhancements
+Implemented a color customization feature, offering 10 distinct colors to enhance navigation for color-blind users. Additionally, large, bold text, panes, icons, and hover/focus animations were used to improve overall usability and accessibility.
 
-**Nodemon**
-Nodemon, a utility tool, facilitated a smooth development workflow by automatically restarting the server upon file changes, eliminating the need for manual server restarts.
+### Future Enhancements
 
-**Vite**
-Vite, a fast build tool, optimized the development process by providing rapid bundling and hot module replacement capabilities, enhancing productivity and accelerating the deployment of the web application. 
-
-**TailwindCSS**
-Tailwind CSS is a front end CSS framework that allows styling without leaving the HTML through pre-build classes.  
-
-
-Collectively, these technologies synergized to create a feature-rich, secure, and performant web application, delivering an exceptional user experience while simplifying development and maintenance processes.
-
-## Challenges
-Some challenges when creating the project was designing a coherent architecture that effectively manages the flow of data between frontend and backend components. Decisions regarding the seperation of data flow patterns, and API design must be made to ensure scalability, maintainability, and performance. Along with this desynchronization was a challenge as front end styling depended on information stored in the backend. So often components failed to load as the frontend would load first without gathering the data from the backend. Another challenge was getting the cookies to funciton on the production environment. This was solved by using a custom domain which had cross site restrictions. Since this concept project is hosted on shared hosting, the site may take a while to wake from sleep (1-2 minutes) on inital loading. 
-
-## Group
-- William: Worked on chat feature, main UI layout
-- Brandon: Worked on profile feature and backend
-- Lucca: Worked on profile feature and frontend
-- Ryan: Worked on settings feature and frontend
-- Ethan: Worked on settings feature and backend
-
-## Accessibility
-One feature that was implemented for accessiblity was the ability to change the UI's color. Offered are 10 different colors that users can chosoe from. This specific feature was implemented to help those who are color blind navigate the application better. Large and bold text with a different color was used to indicate large sections of importance. "Panes/Boxes" were used to seperate information and windows. Icons were utilized to dispaly lots of information in a small space. Hover/focus and select animations were used to give more feedback to the user, making the app easier to use.
+**Show Users in Group:** Display a list of users currently in the group chat, enhancing visibility and facilitating easier communication.
+**Edit Group Conversation:** Allow group administrators to edit the group's name, description, or other settings directly within the chat interface.
+**Leave Conversation:** Provide an option for users to leave a group chat, improving flexibility and user control over their participation.
+**Notifications:** Implement a notification system to alert users of new messages, mentions, or other important events, enhancing engagement and responsiveness.
+**Typing Indicators:** Show real-time typing indicators to let users know when someone is composing a message, fostering a more interactive and immediate communication experience.
+**Online/Offline Status:** Display the online/offline status of users, providing a quick visual cue about their availability.
+**Image Uploads:** Enable users to upload images or other media directly into the chat, enriching conversations with visual content.
