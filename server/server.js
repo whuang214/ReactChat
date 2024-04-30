@@ -34,8 +34,9 @@ app.use(passport.session());
 
 // Middleware for development environment
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+
 }
+app.use(morgan("dev"));
 
 // CORS middleware
 app.use(corsMiddleware);
