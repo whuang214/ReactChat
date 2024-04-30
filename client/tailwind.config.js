@@ -24,7 +24,7 @@ export default {
         "red-dark": "#b91c1c",
         "red-light": "#fca5a5",
         "orange": "#f97316",
-        "orange-dark": "#c2410c",
+        "orange-dark": "#982f01",
         "orange-light": "#fdba74",
         "yellow": "#ffc107",
         "yellow-dark": "#a16207",

@@ -1,6 +1,8 @@
 export const ChatHeader = ({ user, currentConversation }) => {
   if (!currentConversation) {
-    return <div>Loading...</div>;
+    return <div>
+        Loading...
+    </div>;
   }
 
   // make sure otherParticipant is updated when the currentConversation changes
