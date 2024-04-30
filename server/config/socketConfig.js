@@ -6,10 +6,15 @@ let io;
 let conversationChangeStreams = {};
 let conversationParticipants = {};
 
+const allowOrigin =
+  process.env.NODE_ENV === "development"
+    ? process.env.DEV_FRONTEND_ORIGIN
+    : process.env.PROD_FRONTEND_ORIGIN;
+
 const init = (server) => {
   io = socketio(server, {
     cors: {
-      origin: process.env.DEV_FRONTEND_ORIGIN, // Adjust as necessary
+      origin: allowOrigin, // Adjust as necessary
       methods: ["GET", "POST"],
       credentials: true,
     },
