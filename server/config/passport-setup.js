@@ -11,7 +11,6 @@ passport.use(
       callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
-      console.log("profile: ", profile);
       try {
         let user = await User.findOne({ githubId: profile.id });
         if (!user) {
@@ -29,9 +28,9 @@ passport.use(
             location: profile._json.location,
             bio: "Default Bio",
             colors: {
-              mainColor:"bg-red",
+              mainColor: "bg-red",
               darkColor: "bg-red-dark",
-              lightColor: "bg-red-light",   
+              lightColor: "bg-red-light",
             },
             contacts: [],
           });
@@ -46,11 +45,13 @@ passport.use(
 
 // saves the user id to the session
 passport.serializeUser((user, done) => {
+  console.log("Serializing user, " + user._id);
   done(null, user._id);
 });
 
 // retrieves the user id from the session
 passport.deserializeUser((id, done) => {
+  console.log("Deserializing user, " + id);
   User.findById(id)
     .then((user) => {
       done(null, user);
