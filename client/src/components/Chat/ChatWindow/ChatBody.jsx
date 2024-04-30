@@ -32,21 +32,21 @@ export const ChatBody = ({ currentConversation, user }) => {
                     : "bg-gray-200 text-gray-800 rounded-bl-none"
                 }`}
               >
-                <div className="flex items-center">
+                <div className={"flex rounded-md p-1 items-center" + " bg-" + `${user?.colors.mainColor}`}>
                   <img
                     src={message.sender.avatarUrl}
                     alt={message.sender.username}
                     className="w-8 h-8 rounded-full mr-2"
                   />
                   <div>
-                    <p className="text-sm break-words break-all">
+                    <p className="text-sm break-words break-all text-black">
                       {message.content}
                     </p>
                     <p
                       className={`text-xs mt-1 ${
                         message.sender.username === user.username
-                          ? "text-gray-300"
-                          : "text-gray-400"
+                          ? "text-black"
+                          : "text-black"
                       }`}
                     >
                       {message.sender.username} -{" "}

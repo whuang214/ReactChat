@@ -152,6 +152,37 @@ const getUserByID = async (req, res) => {
   }
 };
 
+const updateSettings = async (req, res) => {
+  const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+  try {
+    const data = await {
+      colors: req.body.colors,
+    }
+    console.log(data);
+    user.colors.mainColor = data.mainColor;
+    user.colors.darkColor = data.darkColor;
+    user.colors.lightColor = data.lightColor;
+    await User.findByIdAndUpdate(req.user._id, data)
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating the user." });
+  }
+};
+
+const getSettings = async (req, res) => {
+  console.log("marking req")
+  const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ error: "User not found." });
+  }
+  res.status(200).json(user.colors)
+};
+
 module.exports = {
   getUser,
   searchUser,
@@ -160,4 +191,6 @@ module.exports = {
   addUser,
   updateUser,
   removeUser,
+  updateSettings,
+  getSettings,
 };

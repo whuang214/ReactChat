@@ -27,6 +27,12 @@ passport.use(
             profileUrl: profile.profileUrl,
             avatarUrl: profile.photos[0].value,
             location: profile._json.location,
+            bio: "Default Bio",
+            colors: {
+              mainColor:"bg-red",
+              darkColor: "bg-red-dark",
+              lightColor: "bg-red-light",   
+            },
             contacts: [],
           });
         }

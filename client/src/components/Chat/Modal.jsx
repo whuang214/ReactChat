@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Select from "react-select";
 import { Option, SingleValue, MultiValue } from "./CustomSelectComponents";
 import { toast } from "react-toastify";
+import { useAuth } from "../../context/AuthContext";
 
 export const Modal = ({
   handleAddConversation,
@@ -11,6 +12,7 @@ export const Modal = ({
   const modalRef = useRef(null); // Create a ref for the modal content
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [conversationName, setConversationName] = useState(""); // State to store the conversation name
+  const { user } = useAuth();
 
   const options = userContacts.map((contact) => ({
     value: contact._id,
@@ -68,7 +70,7 @@ export const Modal = ({
             options={options}
             components={{ Option, SingleValue, MultiValue }}
             onChange={handleChange}
-            className="basic-multi-select"
+            className={"basic-multi-select" + " focus:border-" + `${user?.colors.lightColor}`}
             classNamePrefix="select"
             placeholder="Select contacts..."
           />
@@ -78,7 +80,8 @@ export const Modal = ({
           <div className="mb-4">
             <input
               type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className={"w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent" 
+                + " focus:ring-" + `${user?.colors.mainColor}`}
               placeholder="Enter conversation name"
               value={conversationName}
               onChange={(e) => setConversationName(e.target.value)}
@@ -87,7 +90,7 @@ export const Modal = ({
         )}
         {/* Action buttons */}
         <div className="flex justify-end mt-4">
-          <button className="btn-primary" onClick={handleAddConversationClick}>
+          <button className={"btn-primary" + " bg-" + `${user?.colors.mainColor}` + " hover:bg-" + `${user?.colors.darkColor}`} onClick={handleAddConversationClick}>
             Start Conversation
           </button>
         </div>

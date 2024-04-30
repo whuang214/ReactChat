@@ -4,7 +4,7 @@
 @layer components {
   /* Sidebar */
   .sidebar {
-    @apply w-1/12 bg-purple-600 flex flex-col items-center rounded-3xl shadow-2xl m-7;
+    @apply w-1/12 bg-purple flex flex-col items-center rounded-3xl shadow-2xl m-7;
   }
   .profile-img {
     @apply w-14 h-14 md:w-16 md:h-16 lg:w-24 lg:h-24 my-8 rounded-full border-2 border-white cursor-pointer;
@@ -18,7 +18,7 @@
   }
 
   .sidebar-item-selected {
-    @apply bg-dark-purple text-white;
+    @apply bg-purple-dark text-white;
   }
   .sidebar-item-unselected {
     @apply text-white;
@@ -27,7 +27,7 @@
     @apply absolute right-0 top-0 w-1 h-full transition-all duration-300 ease-in-out rounded-lg;
   }
   .sidebar-item-indicator-selected {
-    @apply bg-yellow-400;
+    @apply bg-yellow;
   }
   .sidebar-item-indicator-unselected {
     @apply bg-transparent;

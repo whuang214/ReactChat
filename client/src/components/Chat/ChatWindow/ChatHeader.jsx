@@ -1,6 +1,8 @@
 export const ChatHeader = ({ user, currentConversation }) => {
   if (!currentConversation) {
-    return <div>Loading...</div>;
+    return <div>
+        Loading...
+    </div>;
   }
 
   // make sure otherParticipant is updated when the currentConversation changes
@@ -8,9 +10,9 @@ export const ChatHeader = ({ user, currentConversation }) => {
   // if current convo is group than the group name is the title
   if (currentConversation.type === "group") {
     return (
-      <div className="bg-purple-600 rounded-2xl shadow-lg text-white p-4 flex items-center">
+      <div className={"rounded-2xl shadow-lg text-white p-4 flex items-center" + " bg-" + `${user?.colors.mainColor}`}>
         <img
-          className="h-14 w-14 rounded-full border-2 border-purple-300 mr-3"
+          className={"h-14 w-14 rounded-full border-2 mr-3" + " border-" + `${user?.colors.lightColor}`}
           src={`https://via.placeholder.com/50`}
           alt="User Avatar"
         />
@@ -26,9 +28,9 @@ export const ChatHeader = ({ user, currentConversation }) => {
     currentConversation.participants[0];
 
   return (
-    <div className="bg-purple-600 rounded-2xl shadow-lg text-white p-4 flex items-center">
+    <div className={"rounded-2xl shadow-lg text-white p-4 flex items-center" + " bg-" + `${user?.colors.mainColor}`}>
       <img
-        className="h-14 w-14 rounded-full border-2 border-purple-300 mr-3"
+        className={"h-14 w-14 rounded-full border-2 mr-3" + " border-" +`${user?.colors.lightColor}`}
         src={`${otherParticipant.avatarUrl}`}
         alt="User Avatar"
       />
