@@ -15,18 +15,23 @@ const githubCallback = (req, res) => {
     { failureRedirect: "/login" },
     (err, user, info) => {
       if (err) {
+        console.log(err);
         return res.status(401).json({ error: "Authentication failed" });
       }
       if (!user) {
+        console.log("User not found");
         return res.redirect("/login");
       }
       req.logIn(user, (err) => {
         if (err) {
+          console.log(err);
           return res.status(401).json({ error: "Login failed" });
         }
         if (process.env.NODE_ENV === "production") {
+          console.log("Redirecting to production frontend");
           return res.redirect(process.env.PROD_FRONTEND_ORIGIN);
         }
+        console.log("Redirecting to development frontend");
         res.redirect(process.env.DEV_FRONTEND_ORIGIN);
       });
     }
