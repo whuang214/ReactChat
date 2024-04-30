@@ -6,8 +6,8 @@ React Chat is an innovative web application designed to revolutionize online com
 **Deployed Site:** [ReactChat](https://webwarefin.wpi.brandonlui.com/)
 
 ## Installation
-* Clone the repo and install dependencies (server and client directory):
-* Fill out the `.env` file
+* Clone the repo and install dependencies `npm install` (server and client directory):
+* Fill out the `.env.example` file and rename it to `.env` (server and client directory):
 * Start the server with `npm run dev` (server and client directory):
 * Open the client's local server in your browser
 
