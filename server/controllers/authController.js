@@ -15,6 +15,7 @@ const githubCallback = (req, res) => {
     { failureRedirect: "/login" },
     (err, user, info) => {
       if (err) {
+        console.log(err);
         return res.status(401).json({ error: "Authentication failed" });
       }
       if (!user) {
