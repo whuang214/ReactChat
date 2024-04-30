@@ -1,4 +1,4 @@
-# ReactChat
+# ReactChat 
 
 ## Overview
 React Chat is an innovative web application designed to revolutionize online communication. By leveraging the power of React, JavaScript, and other cutting-edge technologies, we've created a platform that combines simplicity with advanced functionality. Users can log in with their GitHub accounts, personalize their profiles, and effortlessly connect with friends for instant messaging. React Chat stands out with its intuitive interface, responsive design, and the ability to create group chats, all wrapped in a customizable UI that adapts to users' preferences.
@@ -27,14 +27,15 @@ React Chat is an innovative web application designed to revolutionize online com
 * **Frontend:** React provides a dynamic and interactive user interface.
 * **Backend:** JavaScript and Node.js facilitate real-time updates and data manipulation.
 * **Database:** Mongoose simplifies MongoDB interactions with a schema-based approach.
-* **Authentication:** Passport.js enhances security with robust authentication and authorization mechanisms.
+* **Authentication:** Passport.js for GitHub OAth and JWT (JSON Web Tokens) is used for secure session management and data transmission between the client and server, ensuring that user data remains confidential and secure during communication.
 * **Development Tools:** Nodemon automates server restarts, and Vite accelerates the development process with fast bundling and hot module replacement.
 * **Styling:** TailwindCSS enables efficient styling directly in HTML, offering a flexible and modern design system.
 
 ## Development Challenges and Solutions
 * **Data Flow Management:** Designed a coherent architecture to manage data flow between frontend and backend components, ensuring scalability and maintainability.
 * **Desynchronization Issues:** Addressed component loading failures by ensuring data from the backend is fetched before rendering frontend components.
-* **Cross-Site Restrictions:** Overcame cookie functionality issues in the production environment by implementing a custom domain with appropriate cross-site restrictions.
+* **Cross-Site Restrictions:** Overcame CORS (Cross-Origin Resource Sharing) issues by configuring the server to allow requests from the client, enabling seamless communication between the two.
+* **Session Management:** Originally had session based authentication but had problems since application is a distributed system. Switched to JWT for secure session management.
 
 ## Team Contributions
 * **William:** Led the development of the chat feature and the main UI layout.
