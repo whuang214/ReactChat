@@ -3,7 +3,7 @@
 ## Overview
 React Chat is an innovative web application designed to revolutionize online communication. By leveraging the power of React, JavaScript, and other cutting-edge technologies, we've created a platform that combines simplicity with advanced functionality. Users can log in with their GitHub accounts, personalize their profiles, and effortlessly connect with friends for instant messaging. React Chat stands out with its intuitive interface, responsive design, and the ability to create group chats, all wrapped in a customizable UI that adapts to users' preferences.
 
-**Deployed Site:** [ReactChat](https://webwarefin.wpi.brandonlui.com/)
+**Deployed Site:** [ReactChat](https://webwarefin.wpi.brandonlui.com/)  - Note: The site is hosted on Render and may require additional load time upon initial access after periods of inactivity.
 
 ## Installation
 * Clone the repo and install dependencies `npm install` (server and client directory):
