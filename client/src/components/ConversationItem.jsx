@@ -14,14 +14,14 @@ export const ConversationItem = ({
   if (conversation.type === "group") {
     // For group conversations
     name = conversation.name || "Unnamed Group";
-    icon = "https://via.placeholder.com/50"; // Placeholder for group (you might want to use a group icon)
+    icon = "https://placehold.co/50"; // Placeholder for group (you might want to use a group icon)
   } else {
     // For private conversations, find the other participant
     const otherParticipant =
       conversation.participants.find((p) => p._id !== user._id) ||
       conversation.participants[0];
     name = otherParticipant.displayName;
-    icon = otherParticipant.avatarUrl || "https://via.placeholder.com/50";
+    icon = otherParticipant.avatarUrl || "https://placehold.co/50";
   }
 
   const handleClick = () => {
