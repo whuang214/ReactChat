@@ -20,12 +20,12 @@ A modern, real-time chat app with GitHub sign-in, customizable profiles/themes, 
 
 ## Tech Stack
 
-**Frontend:** React, Vite, TailwindCSS
-**Backend:** Node.js, Express
-**Database:** MongoDB (Mongoose)
-**Auth:** GitHub OAuth (Passport) + JWT
-**Dev tooling:** Nodemon
-**Hosting:** Heroku (demo at the link above)
+- **Frontend:** React, Vite, TailwindCSS
+- **Backend:** Node.js, Express
+- **Database:** MongoDB (Mongoose)
+- **Auth:** GitHub OAuth (Passport) + JWT
+- **Dev tooling:** Nodemon
+- **Hosting:** Heroku (demo at the link above)
 
 ## Screenshots
 
