@@ -1,5 +1,7 @@
 # ReactChat
 
+![GIF Demo](https://i.imgur.com/rxq0DS0.gif)
+
 A modern, real-time chat app with GitHub sign-in, customizable profiles/themes, and group messaging: built with a clean, accessible UI.
 
 **Live Demo:** [https://react-chat-gamma-seven.vercel.app/](https://react-chat-gamma-seven.vercel.app/)
@@ -26,10 +28,6 @@ A modern, real-time chat app with GitHub sign-in, customizable profiles/themes, 
 - **Auth:** GitHub OAuth (Passport) + JWT
 - **Dev tooling:** Nodemon
 - **Hosting:** Heroku (demo at the link above)
-
-## Screenshots
-
-![GIF Demo](https://i.imgur.com/rxq0DS0.gif)
 
 ---
 
